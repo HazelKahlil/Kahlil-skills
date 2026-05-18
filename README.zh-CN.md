@@ -62,6 +62,10 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main
 
 当前公开版本：`multica-squad-builder` v1.1.3。
 
+## Agent 维护说明
+
+Agent 更新这个仓库前，应先阅读并遵守 `AGENTS.md`，再进行编辑、验证、提交或发布。
+
 ## 发布规则
 
 发布新的 Skill 或版本前，先运行 `docs/publishing-checklist.md` 里的检查。

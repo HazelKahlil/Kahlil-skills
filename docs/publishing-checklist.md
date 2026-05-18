@@ -5,6 +5,7 @@ Run this checklist before pushing a release to GitHub.
 ## Content
 
 - [ ] Skill content is generic and reusable.
+- [ ] `AGENTS.md` has been read before editing or publishing.
 - [ ] No private setup packs, issue transcripts, run logs, screenshots, databases, or generated private reports are included.
 - [ ] Project-specific examples are anonymized or expressed as placeholders.
 - [ ] README explains purpose, layout, validation, and usage.
