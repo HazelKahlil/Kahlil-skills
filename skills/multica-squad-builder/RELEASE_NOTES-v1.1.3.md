@@ -1,10 +1,10 @@
 # Multica-Squad-Builder v1.1.3 Release Notes
 
 v1.1.3 is a pilot-feedback patch based on real squad setup and no-code pilot use.
-It keeps the lean package shape from v1.1.2 while tightening rules that affect
-day-to-day squad operation.
+It keeps the lean package shape while tightening rules that affect day-to-day
+squad operation.
 
-## Fixes over v1.1.2
+## Changes
 
 - Added explicit Captain status-transition guidance for routed, review-passed,
   and accepted work.
