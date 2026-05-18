@@ -41,6 +41,23 @@ shasum -a 256 -c CHECKSUMS.txt
 
 使用时，根据你自己的工作区、成员、小队名单、项目资源和 mention map 调整模板。不要把示例占位符当成真实 ID 使用。
 
+## 安装
+
+把下面这条命令复制给 Agent，让它在命令行里执行：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | bash
+```
+
+它会把 `multica-squad-builder` 安装到 `${CODEX_HOME:-~/.codex}/skills/multica-squad-builder`。
+安装后需要重启 Codex 或 Agent 运行时，新的 Skill 才会被加载。
+
+如果本地已经有旧版本，需要覆盖安装：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
+```
+
 ## 发布状态
 
 当前公开版本：`multica-squad-builder` v1.1.3。

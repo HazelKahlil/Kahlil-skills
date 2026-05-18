@@ -42,6 +42,23 @@ python3 scripts/red_team_check.py
 
 Then adapt the templates for your own workspace, roster, project resources, and mention map. Do not reuse example placeholders as real IDs.
 
+## Install
+
+Copy this command into an agent shell to install the current public skill:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | bash
+```
+
+It installs `multica-squad-builder` to `${CODEX_HOME:-~/.codex}/skills/multica-squad-builder`.
+Restart Codex or the agent runtime after installation.
+
+To replace an existing local copy:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
+```
+
 ## Release Status
 
 Current public release: `multica-squad-builder` v1.1.3.

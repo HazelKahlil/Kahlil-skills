@@ -40,6 +40,12 @@ python3 scripts/red_team_check.py
 shasum -a 256 -c CHECKSUMS.txt
 ```
 
+## Installation
+
+- [ ] One-line install command is present in `README.md` and `README.zh-CN.md`.
+- [ ] `scripts/install-skill.sh` installs into `${CODEX_HOME:-~/.codex}/skills`.
+- [ ] Installer has been tested with a temporary destination.
+
 ## GitHub
 
 - [ ] Confirm the repo name and visibility before creating the remote.
