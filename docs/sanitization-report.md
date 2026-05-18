@@ -6,7 +6,7 @@ Initial release candidate: `multica-squad-builder` v1.1.3.
 
 Included:
 
-- `skills/multica-squad-builder/`
+- root Skill files for `multica-squad-builder`
 - root repository documentation
 - repository publishing checklist
 

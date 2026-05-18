@@ -6,7 +6,7 @@ This package uses a lean-core strategy.
 
 - `SKILL.md`: target under 300 lines and under about 4,000–5,000 tokens.
 - Importable zip: target under 100 KB for normal use.
-- File count: target under 40 files.
+- File count: target under 50 files when the Skill is distributed from a repository root.
 - Individual references: focused and small enough to read only when needed.
 - Generated example packs: not included in the importable package by default.
 

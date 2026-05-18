@@ -1,14 +1,15 @@
-# Kahlil Open Skills
+# Kahlil Skills
 
 [简体中文](README.zh-CN.md)
 
-Kahlil Open Skills is a public collection of reusable skills for AI agent
-workflows, automation, and project operations.
+Kahlil Skills is a public, installable AI agent Skill repository. The current
+root Skill is `multica-squad-builder`, a lean Skill for designing, configuring,
+auditing, migrating, operating, and iterating Multica-style agent squads.
 
-This repository is intentionally small. It contains publishable skill packages
-and the minimum documentation needed to understand, validate, and reuse them.
+This repository keeps the Skill at the root so it can be shared with a short
+GitHub URL.
 
-## Skills
+## Skill
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
@@ -17,12 +18,11 @@ and the minimum documentation needed to understand, validate, and reuse them.
 ## Repository Layout
 
 ```text
-skills/
-  multica-squad-builder/
-    SKILL.md
-    references/
-    templates/
-    scripts/
+SKILL.md
+references/
+templates/
+config/
+scripts/
 docs/
   publishing-checklist.md
   sanitization-report.md
@@ -30,12 +30,9 @@ docs/
 
 ## Usage
 
-Each skill is self-contained under `skills/<skill-name>/`.
-
 For `multica-squad-builder`, start with:
 
 ```bash
-cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 ```
@@ -47,7 +44,7 @@ Then adapt the templates for your own workspace, roster, project resources, and 
 Copy this command into an agent shell to install the current public skill:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash
 ```
 
 It installs `multica-squad-builder` to `${CODEX_HOME:-~/.codex}/skills/multica-squad-builder`.
@@ -56,7 +53,7 @@ Restart Codex or the agent runtime after installation.
 To replace an existing local copy:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
 ```
 
 ## Release Status

@@ -2,8 +2,9 @@
 set -euo pipefail
 
 SKILL_NAME="${1:-multica-squad-builder}"
-REPO_URL="${KOS_REPO_URL:-https://github.com/HazelKahlil/Kahlil-Open-Skills.git}"
+REPO_URL="${KOS_REPO_URL:-https://github.com/HazelKahlil/Kahlil-skills.git}"
 REF="${KOS_REF:-main}"
+SKILL_PATH="${KOS_SKILL_PATH:-.}"
 CODEX_HOME_DIR="${CODEX_HOME:-$HOME/.codex}"
 DEST_ROOT="${KOS_DEST:-$CODEX_HOME_DIR/skills}"
 OVERWRITE="${KOS_OVERWRITE:-0}"
@@ -26,7 +27,7 @@ else
   git clone --depth 1 --branch "$REF" "$REPO_URL" "$repo_dir" >/dev/null 2>&1
 fi
 
-source_dir="$repo_dir/skills/$SKILL_NAME"
+source_dir="$repo_dir/$SKILL_PATH"
 dest_dir="$DEST_ROOT/$SKILL_NAME"
 
 if [ ! -f "$source_dir/SKILL.md" ]; then
@@ -47,6 +48,7 @@ fi
 mkdir -p "$DEST_ROOT"
 mkdir -p "$dest_dir"
 cp -R "$source_dir"/. "$dest_dir"/
+rm -rf "$dest_dir/.git"
 
 if command -v python3 >/dev/null 2>&1 && [ -f "$dest_dir/scripts/validate_skill.py" ]; then
   (cd "$dest_dir" && python3 scripts/validate_skill.py >/dev/null)

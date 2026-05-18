@@ -28,7 +28,6 @@ Before publishing changes:
 For `multica-squad-builder`:
 
 ```bash
-cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 shasum -a 256 -c CHECKSUMS.txt
@@ -47,7 +46,7 @@ rm -rf "$tmp_dest"
 The current default install command is:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-Open-Skills/main/scripts/install-skill.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash
 ```
 
 After installing, restart Codex or the agent runtime so the new skill is loaded.

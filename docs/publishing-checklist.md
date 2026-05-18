@@ -35,7 +35,6 @@ Expected result: no real secrets. Policy documents may contain words such as `se
 For each skill with validation scripts:
 
 ```bash
-cd skills/<skill-name>
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 shasum -a 256 -c CHECKSUMS.txt
