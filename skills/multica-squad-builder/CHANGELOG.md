@@ -1,0 +1,38 @@
+# Changelog
+
+## v1.1.3 — Pilot Feedback Patch
+
+- Added explicit Captain status-transition rules: routed work moves to `in_progress`, review-passed no-code or implementation results move to `in_review`, and `done` still requires merge or Human Owner no-PR acceptance.
+- Added Analyst/RFC evidence-budget guidance to prevent broad scans during simple product/RFC tasks.
+- Added Project Resources / repo-readiness guidance for local Git baselines and untracked project directories inside broad parent repos.
+- Added pilot retro checks for status accuracy, bounded evidence, role overlap, run completion, and task-storm absence.
+- Updated templates and red-team checks so future setup packs inherit these rules.
+
+## v1.1.2 — Final Lean Hardening
+
+- Clean final build with correct root directory `multica-squad-builder`.
+- Removed duplicate prompt directory and stale release-note artifacts from the importable Skill.
+- Kept exact roster mention markdown, installability warning, task failure/rerun, authority-order, and autopilot guardrails.
+- Re-ran validation, red-team check, render check, unzip check, and root-name check.
+
+## v1.1.1 — Lean Core Hardening
+
+- Added post-lean red-team hardening without expanding the package beyond lean budget.
+- Added exact roster mention markdown placeholders and installability gates.
+- Added task failure / retry / manual rerun policy after re-checking Multica task semantics.
+- Added builder-vs-operational installation guard to avoid attaching the broad Builder Skill to every production role by default.
+- Added red-team validation script for critical hardening topics.
+- Added authority order and autopilot-off-by-default policy.
+- Strengthened setup rendering so placeholder status is explicit.
+
+## v1.1.0 — Lean Core
+
+- Reworked package around progressive disclosure and smaller import footprint.
+- Removed generated example packs from the Skill package.
+- Consolidated 60+ reference fragments into a smaller set of focused references.
+- Added explicit size discipline and package budget guidance.
+- Added validation for line counts, unresolved placeholders, and package size.
+
+## v1.0.0
+
+- First formal release under the Multica-Squad-Builder name.

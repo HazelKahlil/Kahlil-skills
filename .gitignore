@@ -1,0 +1,45 @@
+.DS_Store
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+id_rsa
+id_ed25519
+
+# Runtime output
+logs/
+*.log
+tmp/
+temp/
+.cache/
+cache/
+
+# Heavy/generated artifacts
+node_modules/
+dist/
+build/
+coverage/
+test-results/
+screenshots/
+*.sqlite
+*.sqlite3
+*.db
+
+# Tool state
+.multica/
+.codex/
+.openclaw/
+.claude/
+.qoder/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+

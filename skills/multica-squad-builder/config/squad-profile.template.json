@@ -1,0 +1,31 @@
+{
+  "project_name": "<PROJECT_NAME>",
+  "squad_name": "<SQUAD_NAME>",
+  "project_archetype": "new_project | existing_project | legacy_migration | takeover | temporary_project | incident | multi_repo",
+  "human_owner": "<HUMAN_OWNER>",
+  "issue_prefix": "<ISSUE_PREFIX>",
+  "agents": {
+    "captain": "<CAPTAIN_NAME>",
+    "worker": "<WORKER_NAME>",
+    "reviewer": "<REVIEWER_NAME>",
+    "analyst": "<ANALYST_NAME>"
+  },
+  "permissions": {
+    "agents_can_create_prs": true,
+    "agents_can_merge": false,
+    "agents_can_deploy": false,
+    "agents_can_access_sensitive_data": false
+  },
+  "repos": [
+    "<REPO_OR_PROJECT_RESOURCE>"
+  ],
+  "legacy_policy": "unclear legacy issues stay backlog until audited",
+  "mention_markdown": {
+    "captain": "<CAPTAIN_MENTION_MARKDOWN_FROM_ROSTER>",
+    "worker": "<WORKER_MENTION_MARKDOWN_FROM_ROSTER>",
+    "reviewer": "<REVIEWER_MENTION_MARKDOWN_FROM_ROSTER>",
+    "analyst": "<ANALYST_MENTION_MARKDOWN_FROM_ROSTER>",
+    "human_owner": "<HUMAN_OWNER_MENTION_MARKDOWN_FROM_ROSTER>"
+  },
+  "installation": "draft | pilot | live | paused"
+}
