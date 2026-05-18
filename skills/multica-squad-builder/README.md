@@ -1,8 +1,8 @@
-# Multica-Squad-Builder v1.1.2 Lean Core
+# Multica-Squad-Builder v1.1.3
 
 Multica-Squad-Builder is a lean Skill for designing, configuring, auditing, migrating, operating, and iterating Multica agent squads.
 
-v1.1.2 is the clean final lean-hardening build: it keeps the importable package small while retaining the safety gates discovered during red-team review.
+v1.1.3 is the current public release. It keeps the importable package small while adding pilot feedback for status hygiene, bounded evidence, repo readiness, and rollout retrospectives.
 
 ## Recommended use
 

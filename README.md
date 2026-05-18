@@ -1,8 +1,14 @@
 # Kahlil Open Skills
 
-Open-source skill packages for agent workflows, automation, and project operations.
+[简体中文](README.zh-CN.md)
 
-This repository is intended to publish cleaned, reusable versions of skills. It should not contain private workspace IDs, local machine paths, project-specific issue history, API keys, cookies, screenshots, databases, or generated private reports.
+Kahlil Open Skills is a public collection of cleaned, reusable skills for AI
+agent workflows, automation, and project operations.
+
+This repository is intentionally small. It contains publishable skill packages
+and the minimum documentation needed to understand, validate, and reuse them. It
+does not include private workspace IDs, local machine paths, project-specific
+issue history, credentials, screenshots, databases, or internal reports.
 
 ## Skills
 
@@ -37,6 +43,10 @@ python3 scripts/red_team_check.py
 ```
 
 Then adapt the templates for your own workspace, roster, project resources, and mention map. Do not reuse example placeholders as real IDs.
+
+## Release Status
+
+Current public release: `multica-squad-builder` v1.1.3.
 
 ## Publishing Rule
 
