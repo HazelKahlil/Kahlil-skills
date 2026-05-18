@@ -2,9 +2,9 @@
 
 [English](README.md)
 
-Kahlil Open Skills 是一个公开的 Skill 集合，用来发布经过清理、可复用的 AI Agent 工作流、自动化和项目运营 Skill。
+Kahlil Open Skills 是一个公开的 Skill 集合，用来发布可复用的 AI Agent 工作流、自动化和项目运营 Skill。
 
-这个仓库会保持轻量。它只包含适合公开发布的 Skill 包，以及理解、验证、复用这些 Skill 所需的最少文档。这里不应该包含私有工作区 ID、本地机器路径、项目专属 issue 历史、凭证、截图、数据库或内部报告。
+这个仓库会保持轻量。它只包含 Skill 包本身，以及理解、验证、复用这些 Skill 所需的最少文档。
 
 ## 当前 Skill
 

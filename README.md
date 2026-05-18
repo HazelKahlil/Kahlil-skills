@@ -2,13 +2,11 @@
 
 [简体中文](README.zh-CN.md)
 
-Kahlil Open Skills is a public collection of cleaned, reusable skills for AI
-agent workflows, automation, and project operations.
+Kahlil Open Skills is a public collection of reusable skills for AI agent
+workflows, automation, and project operations.
 
 This repository is intentionally small. It contains publishable skill packages
-and the minimum documentation needed to understand, validate, and reuse them. It
-does not include private workspace IDs, local machine paths, project-specific
-issue history, credentials, screenshots, databases, or internal reports.
+and the minimum documentation needed to understand, validate, and reuse them.
 
 ## Skills
 
