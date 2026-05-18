@@ -4,7 +4,7 @@ set -euo pipefail
 SKILL_NAME="${1:-multica-squad-builder}"
 REPO_URL="${KOS_REPO_URL:-https://github.com/HazelKahlil/Kahlil-skills.git}"
 REF="${KOS_REF:-main}"
-SKILL_PATH="${KOS_SKILL_PATH:-.}"
+SKILL_PATH="${KOS_SKILL_PATH:-skills/$SKILL_NAME}"
 CODEX_HOME_DIR="${CODEX_HOME:-$HOME/.codex}"
 DEST_ROOT="${KOS_DEST:-$CODEX_HOME_DIR/skills}"
 OVERWRITE="${KOS_OVERWRITE:-0}"

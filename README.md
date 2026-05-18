@@ -2,12 +2,12 @@
 
 [简体中文](README.zh-CN.md)
 
-Kahlil Skills is a public, installable AI agent Skill repository. The current
-root Skill is `multica-squad-builder`, a lean Skill for designing, configuring,
+Kahlil Skills is a public collection of installable AI agent Skills. The first
+Skill is `multica-squad-builder`, a lean Skill for designing, configuring,
 auditing, migrating, operating, and iterating Multica-style agent squads.
 
-This repository keeps the Skill at the root so it can be shared with a short
-GitHub URL.
+Each Skill lives in its own folder under `skills/`, so the repository can grow
+without mixing package files together.
 
 ## Skill
 
@@ -18,11 +18,13 @@ GitHub URL.
 ## Repository Layout
 
 ```text
-SKILL.md
-references/
-templates/
-config/
-scripts/
+skills/
+  multica-squad-builder/
+    SKILL.md
+    references/
+    templates/
+    config/
+    scripts/
 docs/
   publishing-checklist.md
   sanitization-report.md
@@ -33,6 +35,7 @@ docs/
 For `multica-squad-builder`, start with:
 
 ```bash
+cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 ```

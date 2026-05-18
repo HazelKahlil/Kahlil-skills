@@ -2,9 +2,9 @@
 
 [English](README.md)
 
-Kahlil Skills 是一个公开、可安装的 AI Agent Skill 仓库。当前根目录 Skill 是 `multica-squad-builder`，用于设计、配置、审计、迁移、运营和迭代 Multica 风格的 Agent 小队。
+Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前第一个 Skill 是 `multica-squad-builder`，用于设计、配置、审计、迁移、运营和迭代 Multica 风格的 Agent 小队。
 
-这个仓库把当前 Skill 直接放在根目录，方便用较短的 GitHub 链接分享。
+每个 Skill 都放在 `skills/` 下面的独立文件夹里，后续新增 Skill 时不会把不同包的文件混在一起。
 
 ## Skill
 
@@ -15,11 +15,13 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skill 仓库。当前根�
 ## 仓库结构
 
 ```text
-SKILL.md
-references/
-templates/
-config/
-scripts/
+skills/
+  multica-squad-builder/
+    SKILL.md
+    references/
+    templates/
+    config/
+    scripts/
 docs/
   publishing-checklist.md
   sanitization-report.md
@@ -30,6 +32,7 @@ docs/
 验证 `multica-squad-builder`：
 
 ```bash
+cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 shasum -a 256 -c CHECKSUMS.txt

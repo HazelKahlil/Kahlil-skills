@@ -42,7 +42,7 @@ for term in crit_terms:
 # Size budget
 files=package_files()
 raw=sum(p.stat().st_size for p in files)
-if len(files) > 50: errors.append(f'Too many files for lean package: {len(files)} > 50')
+if len(files) > 40: errors.append(f'Too many files for lean package: {len(files)} > 40')
 if raw > 140000: errors.append(f'Raw package too large for lean package: {raw} > 140000')
 if errors:
     print('Validation failed:')

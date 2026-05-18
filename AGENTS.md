@@ -28,6 +28,7 @@ Before publishing changes:
 For `multica-squad-builder`:
 
 ```bash
+cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
 shasum -a 256 -c CHECKSUMS.txt
