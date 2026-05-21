@@ -1,7 +1,7 @@
 {
-  "version": "1.1.3",
+  "version": "1.1.4",
   "file_count_without_checksums_metrics": 30,
-  "raw_bytes_without_checksums_metrics": 53364,
-  "skill_lines": 114,
-  "skill_bytes": 7644
+  "raw_bytes_without_checksums_metrics": 62292,
+  "skill_lines": 117,
+  "skill_bytes": 8241
 }

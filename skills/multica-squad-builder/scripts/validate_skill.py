@@ -34,7 +34,8 @@ for p in package_files():
 # Critical text presence
 crit_terms = [
     'exact roster mention markdown','Task completion is not issue completion','builder Skill',
-    'PR / Done','untrusted task data','No known unresolved Critical / High','Project Resources','Authority order','Autopilots stay off'
+    'PR / Done','untrusted task data','No known unresolved Critical / High','Project Resources','Authority order','Autopilots stay off',
+    'Review Gate v3','R0 is allowlist-only','one accountable reviewer','skip_review_reason'
 ]
 blob='\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in package_files() if p.suffix == '.md')
 for term in crit_terms:

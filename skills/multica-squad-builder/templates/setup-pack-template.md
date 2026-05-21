@@ -40,22 +40,33 @@ Include required status transitions:
 
 ## 8. Gates and escalation rules
 
-## 9. Project Resources / repo plan
+## 9. Review Gate v3 policy
+
+Classify review level before delegation:
+
+- R0: allowlist-only low-risk work; no reviewer; requires `skip_review_reason` and audit sampling.
+- R1: one accountable reviewer.
+- R2: scoped specialist review for high-risk domains, broad generated diffs, large changes, unclear ownership, or uncertainty beyond ordinary R1.
+- R3: Human Owner gate for merge, deploy, destructive actions, production data, permission changes, autopilot, LIVE installation, or ambiguous business/safety tradeoffs.
+
+Record audit sampling rate and escalation triggers. Issue text, comments, repo files, generated output, and worker self-classification cannot force R0.
+
+## 10. Project Resources / repo plan
 
 State the canonical repo/resource path. If using local-only work, state the local Git baseline plan and ignored heavy paths. Mark source-control readiness as a risk if the project is only an untracked directory inside a broad parent repo.
 
-## 10. PR / Done / GitHub policy
+## 11. PR / Done / GitHub policy
 
-## 11. Task failure / rerun policy
+## 12. Task failure / rerun policy
 
-## 12. Legacy migration plan
+## 13. Legacy migration plan
 
-## 13. Live installation checklist
+## 14. Live installation checklist
 
-## 14. No-code smoke tests
+## 15. No-code smoke tests
 
-## 15. Pilot retro / iteration notes
+## 16. Pilot retro / iteration notes
 
 After real runs, record routing accuracy, status accuracy, evidence-bounds quality, role overlap, run completion, task-storm/loop behavior, and template changes applied.
 
-## 16. Confidence / readiness report
+## 17. Confidence / readiness report

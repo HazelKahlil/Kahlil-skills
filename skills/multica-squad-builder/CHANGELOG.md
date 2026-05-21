@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.4 — Review Gate v3
+
+- Added risk-based Review Gate v3 with R0/R1/R2/R3 levels, hard escalation rules, reviewer hygiene, and audit metrics.
+- Updated Captain, Worker, Reviewer, Squad, setup pack, and review templates so review is triggered by risk instead of default ritual.
+- Added skip-review safeguards so issue text, generated output, and worker self-classification cannot force R0.
+- Added red-team and validation checks for Review Gate v3 coverage.
+
 ## v1.1.3 — Pilot Feedback Patch
 
 - Added explicit Captain status-transition rules: routed work moves to `in_progress`, review-passed no-code or implementation results move to `in_review`, and `done` still requires merge or Human Owner no-PR acceptance.
