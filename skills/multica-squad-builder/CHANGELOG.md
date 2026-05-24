@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.5 — Role Theme Presets
+
+- Added `references/role-theme-presets.md` with 14 Chinese and global IP-inspired squad role themes.
+- Added router guidance so role flavor requests load the preset reference only when needed.
+- Added guardrails: role flavor may change display names, descriptions, and tone hints, but cannot override role separation, Review Gate v3, permissions, PR/Done policy, or safety rules.
+- Added validation/red-team coverage for role theme policy boundaries.
+
 ## v1.1.4 — Review Gate v3
 
 - Added risk-based Review Gate v3 with R0/R1/R2/R3 levels, hard escalation rules, reviewer hygiene, and audit metrics.

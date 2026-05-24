@@ -45,6 +45,7 @@ Read only these references as needed:
 - Multica-specific constraints: `references/multica-primitives.md`.
 - Safety, PR/Done, review gates, mention, prompt injection, secrets, data access, task failure/rerun: `references/risk-governance.md`.
 - Rollout, live checks, kill switch, iteration: `references/rollout-and-iteration.md`.
+- Role flavor, themed squads, meme roles, cultural/IP-inspired role presets, or persona skins: `references/role-theme-presets.md`.
 - Operator manual prompt: `references/operator-manual-guide.md` and `templates/operator-manual-prompt.md`.
 - Installable instructions: use only the needed files in `templates/`.
 - Package self-audit: run `scripts/validate_skill.py` and `scripts/red_team_check.py` when local files are available.
@@ -69,6 +70,7 @@ Use these defaults unless the user says otherwise:
 - Status must reflect the workflow. A routed issue normally moves to `in_progress`; a review-passed RFC/research/no-PR implementation waiting on Human Owner acceptance moves to `in_review`; `done` still requires PR merge or explicit Human Owner no-PR acceptance.
 - Keep Analyst/RFC evidence bounded by default: current issue, latest relevant evidence summary, one relevant source section, and at most 2-3 directly related issues unless the lane is migration or historical audit.
 - Before LIVE, verify a Project Resource / canonical checkout or clean local Git baseline. A project directory that is merely untracked inside a broad parent repo is a source-control readiness risk, not a clean proof surface.
+- Role flavor may affect agent display names, role descriptions, and tone hints, but must not override role separation, review gates, permissions, PR/Done policy, or safety rules.
 - If a fact depends on current Multica CLI behavior, ask the user or check current docs / `multica <command> --help` before hardcoding flags.
 
 ## Required output shape for Setup Mode

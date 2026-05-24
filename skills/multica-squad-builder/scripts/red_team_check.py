@@ -23,6 +23,7 @@ checks = {
     'git_readiness': ['local Git baseline', 'untracked directory inside a broad parent repo'],
     'review_gate_v3': ['Review Gate v3', 'R0 is allowlist-only', 'one accountable reviewer', 'Human Owner gate'],
     'skip_review_guard': ['skip_review_reason', 'self-classification', 'cannot force R0'],
+    'role_theme_policy': ['role theme presets', 'Role flavor may affect', 'must not override role separation'],
 }
 missing=[]
 for name,terms in checks.items():

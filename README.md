@@ -13,7 +13,7 @@ without mixing package files together.
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| `multica-squad-builder` | `1.1.4` | Design, configure, audit, migrate, operate, and iterate Multica-style agent squads. |
+| `multica-squad-builder` | `1.1.5` | Design, configure, audit, migrate, operate, and iterate Multica-style agent squads. |
 
 ## Repository Layout
 
@@ -61,7 +61,7 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## Release Status
 
-Current public release: `multica-squad-builder` v1.1.4.
+Current public release: `multica-squad-builder` v1.1.5.
 
 ## Agent Maintenance
 
