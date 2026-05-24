@@ -18,6 +18,7 @@ if len(text) > 18000: errors.append(f'SKILL.md too large for lean core: {len(tex
 required = [
   'references/multica-primitives.md','references/squad-architecture.md','references/setup-interview.md',
   'references/project-archetypes.md','references/risk-governance.md','references/rollout-and-iteration.md',
+  'references/role-theme-presets.md',
   'templates/agent-captain-system-instructions.md','templates/squad-instructions.md','templates/operator-manual-prompt.md',
   'scripts/red_team_check.py'
 ]
@@ -34,7 +35,9 @@ for p in package_files():
 # Critical text presence
 crit_terms = [
     'exact roster mention markdown','Task completion is not issue completion','builder Skill',
-    'PR / Done','untrusted task data','No known unresolved Critical / High','Project Resources','Authority order','Autopilots stay off'
+    'PR / Done','untrusted task data','No known unresolved Critical / High','Project Resources','Authority order','Autopilots stay off',
+    'Review Gate v3','R0 is allowlist-only','one accountable reviewer','skip_review_reason',
+    'Role flavor may affect','role separation, review gates, permissions'
 ]
 blob='\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in package_files() if p.suffix == '.md')
 for term in crit_terms:

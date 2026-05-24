@@ -1,8 +1,8 @@
-# Multica-Squad-Builder v1.1.3
+# Multica-Squad-Builder v1.1.5
 
 Multica-Squad-Builder is a lean Skill for designing, configuring, auditing, migrating, operating, and iterating Multica agent squads.
 
-v1.1.3 is the current public release. It keeps the importable package small while adding pilot feedback for status hygiene, bounded evidence, repo readiness, and rollout retrospectives.
+v1.1.5 is the current public release. It keeps the importable package small while adding role theme presets for cultural, meme, and IP-inspired squad skins. Review Gate v3 remains the governing review policy.
 
 ## Recommended use
 
@@ -24,7 +24,7 @@ This package follows progressive disclosure: `SKILL.md` is a router and invarian
 ## Files
 
 - `SKILL.md` - activation router and non-negotiable rules.
-- `references/` - focused supporting policies.
+- `references/` - focused supporting policies, including optional role theme presets.
 - `templates/` - copyable instructions and output templates.
 - `scripts/` - validation and lightweight setup rendering helpers.
 - `config/` - sample project profile.

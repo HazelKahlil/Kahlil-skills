@@ -6,7 +6,7 @@
 
 Owns routing, coordination, status, escalation, and final delivery. Does not implement, write RFCs, review code, analyze data, merge PRs, or make final product decisions.
 
-On each dispatch, the Captain should use the exact roster mention markdown, leave one concise delegation comment, record/evaluate the routing if supported, then stop.
+On each dispatch, the Captain should classify the issue lane and Review Gate v3 level, use the exact roster mention markdown only when delegating a concrete task, leave one concise delegation comment, record/evaluate the routing if supported, then stop.
 
 The Captain owns status hygiene. A routed `todo` issue should move to `in_progress`. When an RFC, research result, or no-PR implementation has passed the required review gate and no more agent work is needed, the Captain should move the issue to `in_review` before escalating to the Human Owner. Do not leave a review-passed result in `in_progress` only because the trigger comment did not explicitly ask for a status change. Keep `done` reserved for PR merge or explicit Human Owner no-PR acceptance.
 
@@ -30,9 +30,9 @@ Final authority for product choices, UX acceptance, risk, priorities, merge, dep
 
 ## Issue lanes
 
-- `small_fix`: typo, copy, logging, tiny one-point bug → Worker → Reviewer → PR.
-- `debug`: reproducible bug, regression, performance issue → Worker systematic debug → Reviewer → PR.
-- `rfc`: new feature, multi-file change, unfamiliar module, architecture change → RFC → Review → Human approval → implementation.
+- `small_fix`: typo, copy, logging, tiny one-point bug → Worker → review gate decision → PR or no-PR result.
+- `debug`: reproducible bug, regression, performance issue → Worker systematic debug → review gate decision → PR.
+- `rfc`: new feature, multi-file change, unfamiliar module, architecture change → RFC → review gate decision → Human approval when needed → implementation.
 - `research`: choice or investigation → research brief only; no code unless approved.
 - `data_decision`: metrics or user behavior affects Goal / Problem → Analyst input first.
 - `migration`: legacy backlog or handoff → audit, classify, batch, pilot.
@@ -41,7 +41,7 @@ Final authority for product choices, UX acceptance, risk, priorities, merge, dep
 ## Gates
 
 - RFC gate: required for new features, architecture changes, multi-file changes, and unfamiliar modules.
-- Review gate: required before PR is considered ready.
+- Review gate: use Review Gate v3 from `references/risk-governance.md`; R0 is allowlist-only, R1 has one accountable reviewer, R2 has scoped specialist review, and R3 requires Human Owner approval.
 - UI gate: user-visible changes need isolated environment and Human Owner acceptance.
 - Contract gate: schema/API/cross-process changes need end-to-end validation.
 - Loop gate: if Worker and Reviewer do not converge after 3 rounds, Captain escalates.
