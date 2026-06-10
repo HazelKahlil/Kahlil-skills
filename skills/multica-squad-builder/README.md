@@ -1,8 +1,8 @@
-# Multica-Squad-Builder v1.1.5
+# Multica-Squad-Builder v1.2.0
 
 Multica-Squad-Builder is a lean Skill for designing, configuring, auditing, migrating, operating, and iterating Multica agent squads.
 
-v1.1.5 is the current public release. It keeps the importable package small while adding role theme presets for cultural, meme, and IP-inspired squad skins. Review Gate v3 remains the governing review policy.
+v1.2.0 is the current public release. It keeps the importable package small while replacing the old level-based review gate with Review Router v2: route each task to the right validation path instead of defaulting to repeated reviewer loops.
 
 ## Recommended use
 

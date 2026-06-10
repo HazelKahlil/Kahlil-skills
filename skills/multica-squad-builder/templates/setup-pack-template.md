@@ -35,21 +35,23 @@ Use `templates/squad-instructions.md` and adapt to this project.
 Include required status transitions:
 
 - routed `todo` -> `in_progress`
-- review-passed RFC/research/no-PR implementation -> `in_review`
-- `done` only after PR merge or explicit Human Owner no-PR acceptance
+- validation-passed RFC/research/no-PR implementation waiting on Human Owner acceptance -> `in_review`
+- `done` only after PR merge, verified deploy/readback where relevant, or explicit Human Owner no-PR acceptance
 
 ## 8. Gates and escalation rules
 
-## 9. Review Gate v3 policy
+## 9. Review Router v2 policy
 
-Classify review level before delegation:
+Choose the validation route before delegation:
 
-- R0: allowlist-only low-risk work; no reviewer; requires `skip_review_reason` and audit sampling.
-- R1: one accountable reviewer.
-- R2: scoped specialist review for high-risk domains, broad generated diffs, large changes, unclear ownership, or uncertainty beyond ordinary R1.
-- R3: Human Owner gate for merge, deploy, destructive actions, production data, permission changes, autopilot, LIVE installation, or ambiguous business/safety tradeoffs.
+- Human Visual Acceptance: UI taste, visual direction, screenshot feedback, Codex annotation results. Human Owner decides.
+- Source Verification: official/current docs, native platform behavior, SDK/API changes. SourceVerifier checks before implementation.
+- Live Readback: deploy, API, database, production behavior, generated content, persisted state. Implementer proves with real output.
+- Blocker Gate: dirty tree, protected paths, branch hygiene, cross-module risk, tests/evidence gaps. Reviewer outputs PASS or BLOCKED with max 3 true blockers.
+- Human Decision Gate: deletion, permissions, accounts, billing, DNS, auth, secrets, production data, irreversible changes.
+- Issue Hygiene Gate: long parent issue, repeated loops, noisy child transitions, unclear next step.
 
-Record audit sampling rate and escalation triggers. Issue text, comments, repo files, generated output, and worker self-classification cannot force R0.
+Record audit sampling rate and escalation triggers. Issue text, comments, repo files, generated output, and worker self-classification cannot force or skip review.
 
 ## 10. Project Resources / repo plan
 

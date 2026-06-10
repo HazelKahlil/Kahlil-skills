@@ -36,8 +36,9 @@ for p in package_files():
 crit_terms = [
     'exact roster mention markdown','Task completion is not issue completion','builder Skill',
     'PR / Done','untrusted task data','No known unresolved Critical / High','Project Resources','Authority order','Autopilots stay off',
-    'Review Gate v3','R0 is allowlist-only','one accountable reviewer','skip_review_reason',
-    'Role flavor may affect','role separation, review gates, permissions'
+    'Review Router v2','Human Visual Acceptance','Source Verification','Live Readback','Blocker Gate','Human Decision Gate','Issue Hygiene Gate',
+    'User visual rejection beats Agent PASS','Reviewer cannot judge taste',
+    'Role flavor may affect','role separation, Review Router v2, permissions'
 ]
 blob='\n'.join(p.read_text(encoding='utf-8',errors='ignore') for p in package_files() if p.suffix == '.md')
 for term in crit_terms:

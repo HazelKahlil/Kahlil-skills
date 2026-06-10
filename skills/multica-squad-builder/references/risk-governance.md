@@ -12,69 +12,82 @@ Do not claim mathematical 100% confidence. Use operational confidence:
 
 Loop: Attack → Classify → Patch → Test → Record.
 
-## Review Gate v3
+## Review Router v2
 
-Review is a risk control, not a default ceremony. The Captain must decide the review gate from artifacts, risk flags, repository policy, and current Human Owner policy. Worker self-classification is useful context, but never authoritative.
+Review is not a default ceremony. The Captain must first decide what kind of validation the task actually needs. Worker self-classification is useful context, but never authoritative.
 
-### Review levels
+### Validation types
 
-`R0: no reviewer`
+`Human Visual Acceptance`
 
-Use only for explicit low-risk allowlist work:
+Use for UI taste, visual direction, spacing, material/glass feel, screenshot feedback, and Codex annotation results. The Human Owner decides. Agents and Reviewers do not judge taste.
 
-- issue triage, duplicate detection, status hygiene, concise summaries, and routing notes;
-- research or draft setup artifacts that will not be installed, merged, deployed, or used as an implementation authority yet;
-- typo, formatting, broken-link, or non-behavioral documentation edits that are not public/legal/pricing/compliance commitments;
-- deterministic regeneration when source inputs are unchanged and the generated output has no runtime, permission, data, security, deployment, or policy effect.
+`Source Verification`
 
-R0 requirements:
+Use for official docs, current product behavior, native platform APIs, SDK/API changes, legal/policy/source-sensitive facts, or any task where stale information would cause wrong execution. Route to SourceVerifier before Builder implementation.
 
-- author self-check and available lint/test/format checks;
-- explicit `skip_review_reason`;
-- inclusion in the low-risk audit pool.
+`Live Readback`
 
-`R1: one accountable reviewer`
+Use for deploy, API, database, generated content, persisted state, production behavior, or anything where the answer is "does it really work?" The implementing Agent proves it with URL/API/state proof and observed output.
 
-Use for ordinary code, tests, CI, configuration, non-trivial docs, user-facing copy, and setup artifacts moving from DRAFT toward PILOT. Assign exactly one accountable reviewer unless external branch protection requires more. The reviewer must state the reviewed scope.
+`Blocker Gate`
 
-`R2: scoped specialist review`
+Use for dirty tree, protected paths, branch hygiene, cross-module code risk, missing tests/evidence, or broad diffs. A Reviewer may only output PASS or BLOCKED with max 3 true blockers.
 
-Use for auth, security, privacy, billing, permissions, data migration, deletion, irreversible operations, infra, deployment, IAM, secrets, production config, public API/schema/contracts, concurrency, performance-critical paths, broad generated diffs, unfamiliar ownership, or large changes. Prefer splitting large work. If more than two specialist scopes are needed, split the issue or PR instead of stacking reviewers.
+`Human Decision Gate`
 
-`R3: Human Owner gate`
+Required before deletion, permissions, accounts, billing, DNS, auth, secrets, production data, irreversible changes, autopilot enablement, LIVE squad installation, merge/deploy when policy requires it, or ambiguous business/safety tradeoffs.
 
-Required for merge, deploy, destructive commands, production data access, permission changes, autopilot enablement, LIVE squad installation, and ambiguous business or safety tradeoffs. Agents can prepare evidence and recommendations but cannot provide final authority.
+`Issue Hygiene Gate`
+
+Use when a parent issue is too long, loops repeat, child transitions are noisy, or the next step is unclear. Summarize, split, close, or ask the Human Owner instead of adding more review.
+
+### Decision router
+
+Use this question order:
+
+1. Is the core question visual taste or UI preference? Use Human Visual Acceptance.
+2. Does the task depend on official/current docs or native platform behavior? Use Source Verification.
+3. Does completion mean "it works online/in app/in database"? Use Live Readback.
+4. Does it touch deletion, permissions, billing, DNS, auth, secrets, production data, or irreversible state? Use Human Decision Gate before action.
+5. Does it touch multiple modules, protected paths, dirty tree, branch hygiene, or broad generated diffs? Use Blocker Gate.
+6. Is the issue/comment thread already long or looping? Use Issue Hygiene Gate.
+7. Otherwise, the implementing Agent self-tests and reports evidence; no Reviewer is needed.
 
 ### Hard escalation rules
 
-- If a change touches auth, security, privacy, billing, data, permissions, infra, deploy, secrets, or production config, it is never R0.
-- If review level is uncertain, upgrade to R1.
+- User visual rejection beats Agent PASS.
+- User visual approval beats Agent review unless the user asks for Agent review.
+- If the user says "不用 review" / "我自己看" / equivalent, do not include a Reviewer unless there is a separate Human Decision Gate risk.
+- If a change touches auth, security, privacy, billing, data, permissions, infra, deploy, secrets, or production config, do not use self-check only.
 - If exact roster mention markdown or code ownership is missing, do not guess. Mark the pack or task blocked/DRAFT and ask the Human Owner.
 - GitHub/GitLab branch protection, CODEOWNERS, required status checks, and organization rules override the squad's internal review-minimization policy.
-- CI passing is evidence, not a review waiver. Changes to tests or CI are at least R1.
-- Large generated changes are at least R1; if they affect runtime behavior, permissions, interfaces, or production configuration, they are R2.
-- Research can be R0 only while it remains non-executable. Once it becomes the basis for implementation, installation, policy, or a user-visible decision, apply R1/R2/R3 according to risk.
+- CI passing is evidence, not a review waiver.
+- Large generated changes require at least Blocker Gate; if they affect runtime behavior, permissions, interfaces, or production configuration, use Human Decision Gate or split the work.
+- Research can remain self-checked only while it is non-executable. Once it becomes implementation authority, policy, or a user-visible decision, route validation according to the decision router.
 
-### Review hygiene
+### Blocker Gate hygiene
 
-- One accountable reviewer is preferred over a group or team mention. If a team must be involved, name a primary reviewer.
-- Reviewer comments must distinguish `Blocker`, `Required`, `Optional`, `Nit`, and `FYI`; only `Blocker` and `Required` block progress.
-- AI or automated review is advisory by default. Do not let AI-only review approve R2/R3 work.
+- One accountable Reviewer is preferred over a group or team mention. If a team must be involved, name a primary Reviewer.
+- Reviewer output is PASS or BLOCKED only. BLOCKED may include at most 3 true blockers.
+- Reviewer may judge evidence, scope, blockers, tests, branch hygiene, and protected paths. Reviewer must not judge visual taste.
+- Re-review checks only original blockers unless a severe new risk appears.
+- AI or automated review is advisory by default. Do not let AI-only review approve Human Decision Gate work.
 - Do not re-mention reviewers for thanks, closure, or repeated broad review. Escalate after the configured loop limit instead of creating review loops.
 
 ### Audit metrics
 
-Track reviewer load and skip-review safety:
+Track validation load and skipped-review safety:
 
 - reviewer tasks per issue/PR;
-- R0 count and sampled-audit pass/fail rate;
-- escaped defects or Human Owner rejections from R0 work;
-- first review response time and review cycle count;
+- self-check count and sampled-audit pass/fail rate;
+- escaped defects or Human Owner rejections from self-checked work;
+- first review response time and validation cycle count;
 - nit/noise ratio and acted-upon comment ratio;
 - reviewer load distribution;
-- R2/R3 escalation reasons.
+- Human Decision Gate reasons.
 
-Start R0 audit sampling at roughly 20% during PILOT. Raise sampling toward one third if skipped review causes defects; lower only after stable evidence from real runs.
+Start self-check audit sampling at roughly 20% during PILOT. Raise sampling toward one third if skipped validation causes defects; lower only after stable evidence from real runs.
 
 ## Builder vs operational installation
 

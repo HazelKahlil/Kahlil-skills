@@ -18,11 +18,12 @@ checks = {
     'authority_order': ['Authority order', 'system instructions'],
     'autopilot_guard': ['Autopilots stay off', 'Human Owner approval'],
     'size_discipline': ['lean', 'SKILL.md', 'generated example packs'],
-    'status_transition_hygiene': ['review-passed', 'in_review', 'in_progress'],
+    'status_transition_hygiene': ['validation-passed', 'in_review', 'in_progress'],
     'analyst_evidence_budget': ['Evidence budget', 'at most 2-3 directly related issues'],
     'git_readiness': ['local Git baseline', 'untracked directory inside a broad parent repo'],
-    'review_gate_v3': ['Review Gate v3', 'R0 is allowlist-only', 'one accountable reviewer', 'Human Owner gate'],
-    'skip_review_guard': ['skip_review_reason', 'self-classification', 'cannot force R0'],
+    'review_router_v2': ['Review Router v2', 'Human Visual Acceptance', 'Source Verification', 'Live Readback', 'Blocker Gate', 'Human Decision Gate', 'Issue Hygiene Gate'],
+    'reviewer_taste_guard': ['User visual rejection beats Agent PASS', 'Reviewer cannot judge taste', 'PASS or BLOCKED'],
+    'skip_review_guard': ['self-classification', 'cannot force or skip review'],
     'role_theme_policy': ['role theme presets', 'Role flavor may affect', 'must not override role separation'],
 }
 missing=[]

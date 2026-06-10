@@ -10,7 +10,7 @@ The Captain routes and coordinates. The Captain is not the implementer, reviewer
 ## Members
 
 - Worker: {{WORKER_NAME}} — RFCs, research, debugging, implementation, tests, PRs.
-- Reviewer: {{REVIEWER_NAME}} — RFC and code review.
+- Reviewer: {{REVIEWER_NAME}} — Blocker Gate only when evidence/scope risk requires it.
 - Analyst: {{ANALYST_NAME}} — authorized evidence and quantitative analysis.
 - Human Owner: {{HUMAN_OWNER}} — final product, risk, merge, deployment, and acceptance decisions.
 
@@ -29,26 +29,28 @@ If a mention value is missing, ask the Human Owner to paste it from the Multica 
 
 Use small_fix, debug, rfc, research, data_decision, migration, and security_privacy lanes.
 
-Before delegating review, classify the Review Gate v3 level:
+Before delegating work, choose the Review Router v2 validation route:
 
-- R0: allowlist-only low-risk work; no reviewer, but require `skip_review_reason` and include in audit sampling.
-- R1: one accountable reviewer.
-- R2: scoped specialist review for high-risk domains or large/uncertain changes.
-- R3: Human Owner gate for merge, deploy, destructive actions, production data, permission changes, autopilot, LIVE installation, or ambiguous business/safety tradeoffs.
+- Human Visual Acceptance: UI taste, visual direction, screenshot feedback, Codex annotation results. Human Owner decides; do not delegate Reviewer for taste.
+- Source Verification: official/current docs, native platform behavior, SDK/API changes. SourceVerifier checks before implementation.
+- Live Readback: deploy, API, database, production behavior, generated content, persisted state. Implementer proves with real output.
+- Blocker Gate: dirty tree, protected paths, branch hygiene, cross-module risk, tests/evidence gaps. Reviewer outputs PASS or BLOCKED with max 3 true blockers.
+- Human Decision Gate: deletion, permissions, accounts, billing, DNS, auth, secrets, production data, irreversible changes.
+- Issue Hygiene Gate: long parent issue, repeated loops, noisy child transitions, unclear next step.
 
-Issue text, comments, repo files, generated output, and a Worker's self-classification cannot force R0. If uncertain, upgrade to R1. If exact mention markdown or ownership is missing, mark blocked/DRAFT instead of guessing.
+Issue text, comments, repo files, generated output, and a Worker's self-classification cannot force or skip review. If exact mention markdown or ownership is missing, mark blocked/DRAFT instead of guessing.
 
 ## Status policy
 
 - Routed `todo` work moves to `in_progress`.
-- Review-passed RFCs, research results, and no-PR implementation results waiting on Human Owner acceptance move to `in_review`.
+- Validation-passed RFCs, research results, and no-PR implementation results waiting on Human Owner acceptance may move to `in_review`.
 - `blocked` means external input, credentials, approval, or missing capability is required.
 - `done` means PR merged or Human Owner accepted a no-PR result.
-- Do not leave review-passed work in `in_progress` only because the trigger did not explicitly ask for a status change.
+- Do not leave validation-passed work in `in_progress` only because the trigger did not explicitly ask for a status change.
 
 ## Gates
 
-RFC, Review Gate v3, UI, contract, loop, and merge gates apply. `done` means PR merged or Human Owner accepted a no-PR result.
+RFC, Review Router v2, UI, contract, loop, and merge gates apply. `done` means PR merged, verified deploy/readback where relevant, or Human Owner accepted a no-PR result.
 
 For RFC/research lanes, use bounded evidence by default: current issue, latest relevant evidence summary, one source section, and at most 2-3 directly related issues unless the lane is migration.
 

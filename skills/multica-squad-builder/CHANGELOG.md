@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.0 — Review Router v2
+
+- Replaced level-based Review Gate v3 with Review Router v2 across the runtime Skill, references, and setup templates.
+- Added validation routes for Human Visual Acceptance, Source Verification, Live Readback, Blocker Gate, Human Decision Gate, and Issue Hygiene Gate.
+- Tightened Reviewer scope: reviewer is now a blocker gate only, cannot judge visual taste, cannot replace user acceptance, and should avoid repeated re-review loops.
+- Updated Worker/Captain/Squad templates so outputs report `validation_route`, `validation_reason`, evidence, and self-check results instead of `review_level`.
+- Added source/current-doc verification guidance for native platform/API work and live readback guidance for deploy/API/production behavior.
+- Added validation and red-team checks so generated squads do not regress back to Review Gate v3 habits.
+
 ## v1.1.5 — Role Theme Presets
 
 - Added `references/role-theme-presets.md` with 14 Chinese and global IP-inspired squad role themes.

@@ -2,7 +2,7 @@
 
 Use this reference when the user asks for themed squad roles, meme roles, cultural role flavor, IP-inspired squads, or a preset role theme library.
 
-Role themes are a display and memory aid. They may influence names, short descriptions, and tone hints in a setup pack. They must not change the core Multica squad model, role separation, gates, permissions, PR/Done policy, exact mention rules, data access rules, review gates, or Human Owner authority.
+Role themes are a display and memory aid. They may influence names, short descriptions, and tone hints in a setup pack. They must not change the core Multica squad model, role separation, Review Router v2, permissions, PR/Done policy, exact mention rules, data access rules, or Human Owner authority.
 
 ## Application Rules
 
