@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.1 — Validation Budget
+
+- Added proportionality and a per-issue validation budget to Review Router v2: default one Blocker Gate pass plus one re-review of original blockers; extra rounds require the Human Owner.
+- The budget never waives Human Decision Gate, Source Verification, branch protection, CODEOWNERS, or org rules.
+- Captain template now carries the budget and the two-loop stop-and-escalate rule so generated captains cannot regress into review loops.
+- Squad instructions template carries the same budget line.
+- Synced repository READMEs to the current release version.
+
 ## v1.2.0 — Review Router v2
 
 - Replaced level-based Review Gate v3 with Review Router v2 across the runtime Skill, references, and setup templates.

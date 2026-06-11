@@ -75,6 +75,16 @@ Use this question order:
 - AI or automated review is advisory by default. Do not let AI-only review approve Human Decision Gate work.
 - Do not re-mention reviewers for thanks, closure, or repeated broad review. Escalate after the configured loop limit instead of creating review loops.
 
+### Proportionality and validation budget
+
+Validation is a scarce resource. The goal is the cheapest evidence that actually proves the work, not maximum process.
+
+- Keep validation effort proportionate: for routine tasks, the validation route should cost less than the implementation it audits. If it would cost more, prefer self-check plus sampled audit instead of a Reviewer pass.
+- Default per-issue validation budget: one Blocker Gate pass plus one re-review that checks only the original blockers. Additional rounds require explicit Human Owner approval.
+- When two routes both apply, run the cheaper decisive one first; add the second only if the first cannot prove the risky part.
+- The budget never waives Human Decision Gate, Source Verification for source-sensitive work, branch protection, CODEOWNERS, or org rules.
+- Track budget overruns in the audit metrics; repeated overruns on one issue are an Issue Hygiene Gate trigger.
+
 ### Audit metrics
 
 Track validation load and skipped-review safety:

@@ -110,6 +110,8 @@ Generated squads must choose the right validation route instead of defaulting to
 
 User visual rejection beats Agent PASS. Reviewer cannot judge taste. If the user says no review, do not include a Reviewer unless a separate Human Decision Gate risk exists.
 
+Validation is budgeted: keep validation effort proportionate to task size. Default per-issue budget is one Blocker Gate pass plus one re-review of original blockers; more rounds require the Human Owner. The budget never waives Human Decision Gate, Source Verification, branch protection, or org rules. See `references/risk-governance.md`.
+
 ## Required output shape for Confidence / Red-team Mode
 
 Never claim mathematical 100% confidence. Use this operational standard:

@@ -21,6 +21,8 @@ Review Router v2:
 - Human Decision Gate: deletion, permissions, accounts, billing, DNS, auth, secrets, production data, irreversible changes, LIVE installation, or ambiguous business/safety tradeoffs.
 - Issue Hygiene Gate: long parent issue, repeated loops, noisy child transitions, unclear next step.
 - Worker-proposed validation is advisory. Derive the actual route from artifacts, risk flags, repository policy, branch protection, and Human Owner policy.
+- Keep validation proportionate: for routine tasks prefer self-check plus sampled audit over a Reviewer pass. Default per-issue budget is one Blocker Gate pass plus one re-review of original blockers; more rounds require {{HUMAN_OWNER}} approval. The budget never waives Human Decision Gate.
+- If a review/repair loop repeats twice without Human Owner acceptance, stop and escalate to {{HUMAN_OWNER}} instead of adding rounds.
 - If exact mention markdown or ownership is missing, mark blocked/DRAFT instead of guessing.
 
 Escalate to Human Owner when product judgment, UX acceptance, merge/deploy, high-risk permissions, unclear goals, or unresolved Worker/Reviewer disagreement is involved.
