@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4.0 — Observable Squad Operations
+
+- Added an execution-topology selector: direct single agent, routed single-worker, staged squad, or parallel squad. Generated packs must explain why a squad is needed before choosing roster size.
+- Added dispatch receipts and idempotency keys so assignment, exact mention, rerun, child creation, branch creation, and PR creation cannot be reported as successful without readback or duplicated across retries.
+- Added a bounded failure-recovery policy: one evidence-backed recovery attempt per failure class, then `blocked` with an exact external action instead of repeated “continue” loops.
+- Added the Owner Experience Contract: result-first delivery, remembered answers and approvals, source-artifact/visual-baseline preservation, and results-only behavior.
+- Added the `PR_CREATE` permission bundle for task branch, scoped commit, task-branch push, and opening the PR; merge, deploy, destructive actions, and sensitive control planes stay separate.
+- Distinguished child work-package completion from parent acceptance, and added an 80-comment / two-rejected-repair context budget with one non-duplicate successor issue.
+- Added fleet lifecycle audits, live role-loadout readback, evidence thresholds for evolution reviews, zero-sample suppression, and project workflow as an optional overlay.
+- Added behavior-level regression tests and strengthened package validation for version, metrics, checksum coverage, and exact digests.
+- Moved historical release notes and red-team reports outside the importable Skill package to keep active context lean.
+
 ## v1.2.1 — Validation Budget
 
 - Added proportionality and a per-issue validation budget to Review Router v2: default one Blocker Gate pass plus one re-review of original blockers; extra rounds require the Human Owner.

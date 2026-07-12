@@ -14,13 +14,17 @@ An agent has a runtime and role instructions. Role instructions define what it m
 
 A squad is a routing layer led by a leader agent. The leader reads the issue and roster, then delegates to members using exact mention markdown from the roster. Typing a guessed plain `@Name` is not reliable. Squad membership does not make the agents more capable; it coordinates them.
 
-On a squad-assigned issue, the leader should delegate once, record/evaluate if the CLI/runtime supports it, and stop. The leader should not implement the work.
+On a squad-assigned issue, the leader should delegate once, verify that the delegation created a task, record/evaluate if the CLI/runtime supports it, and stop. The leader should not implement the work. When one known Agent is sufficient, direct assignment to that Agent is preferable to squad routing.
 
 ## Issue and task
 
 Issues are the visible units of work. Tasks are agent work sessions created by assignment, mention, chat, autopilot, or rerun. Do not assume an issue is complete just because one task finished.
 
 A single issue may have multiple tasks over time. After failure, retry, rerun, reassignment, or parallel mention, re-check the issue state, latest comments, repo scope, and gates.
+
+Assignment, exact mention, rerun, and reassignment are dispatch attempts. Use the current CLI/API to read back issue runs or agent tasks and capture the new task ID. Do not report `queued`, `dispatched`, `running`, or completion from intent alone.
+
+An `agent_error`, limit, timeout, or runtime disconnect is not an automatic retry guarantee. Permit one recovery attempt, verify its new task receipt, then block on a repeated failure class. Check current `multica <command> --help` rather than hardcoding an unavailable fallback command.
 
 ## Status
 
@@ -33,7 +37,7 @@ Recommended semantics:
 - `in_progress`: research, RFC, debugging, or implementation is underway.
 - `in_review`: waiting on reviewer or Human Owner.
 - `blocked`: requires external input; comment must state the blocker.
-- `done`: PR merged or Human Owner accepts no-PR result.
+- `done`: for a child, its defined work packet and evidence are complete; for the parent, PR merged or Human Owner accepts the whole no-PR result.
 - `cancelled`: intentionally not doing it.
 
 Required transition discipline:
@@ -52,6 +56,8 @@ Before LIVE, require either a Project Resource / canonical checkout or a clean l
 ## GitHub / PR
 
 When an issue key appears in PR branch, title, or body, integration may link the PR to that issue; when the PR merges, the issue may move to Done. For multi-PR parent work, use child issues or avoid parent issue keys in partial PRs.
+
+If the Human Owner approves `PR_CREATE`, treat task-branch creation, scoped commit, task-branch push, and opening the PR as one permission bundle. Merge and deploy remain separate unless current project policy explicitly says otherwise.
 
 ## Runtime / daemon
 

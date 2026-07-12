@@ -38,6 +38,7 @@ For each skill with validation scripts:
 cd skills/<skill-name>
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
+python3 scripts/test_operational_contract.py
 shasum -a 256 -c CHECKSUMS.txt
 ```
 

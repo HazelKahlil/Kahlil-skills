@@ -5,18 +5,29 @@ Installability: NOT INSTALLABLE until all required placeholders and exact mentio
 Project: {{PROJECT_NAME}}
 Human Owner: {{HUMAN_OWNER}}
 Project type: {{PROJECT_ARCHETYPE}}
+Issue prefix: {{ISSUE_PREFIX}}
 
 ## 1. Assumptions and open questions
 
-## 2. Squad architecture
+## 2. Execution topology decision
 
-## 3. Agent descriptions
+Selected topology: {{EXECUTION_TOPOLOGY}}
 
-## 4. Role-specific system instructions
+Why a squad is needed: {{SQUAD_JUSTIFICATION}}
+
+Choose direct single agent for one known executor and one deliverable. Use routed single-worker when an issue is already squad-assigned. Use staged or parallel squad only for dependencies or genuinely independent work packets.
+
+## 3. Squad architecture and minimum roster
+
+## 4. Agent descriptions and role loadouts
+
+Record each role's runtime, attached Skills, missing capabilities, and source-of-truth readback. Do not hardcode model names in squad prose.
+
+## 5. Role-specific system instructions
 
 Use the role templates in this Skill and replace every placeholder.
 
-## 5. Exact roster mention map
+## 6. Exact roster mention map
 
 Paste exact Multica roster mention markdown here. Plain names are not enough.
 
@@ -26,21 +37,30 @@ Paste exact Multica roster mention markdown here. Plain names are not enough.
 - Analyst: {{ANALYST_MENTION}}
 - Human Owner: {{HUMAN_OWNER_MENTION}}
 
-## 6. Squad instructions
+## 7. Squad instructions
 
-Use `templates/squad-instructions.md` and adapt to this project.
+Use `templates/squad-instructions.md` and adapt it to this project.
 
-## 7. Issue lanes and status policy
+## 8. Issue lanes, work-package status, and handoff policy
 
-Include required status transitions:
+- Routed `todo` -> `in_progress`.
+- A child is `done` when its defined work packet and evidence are delivered; this does not complete the parent.
+- A validation-passed RFC/research/no-PR result waiting on Human Owner acceptance -> `in_review`.
+- Parent `done` only after PR merge, verified deploy/readback where relevant, or explicit Human Owner no-PR acceptance.
 
-- routed `todo` -> `in_progress`
-- validation-passed RFC/research/no-PR implementation waiting on Human Owner acceptance -> `in_review`
-- `done` only after PR merge, verified deploy/readback where relevant, or explicit Human Owner no-PR acceptance
+## 9. Dispatch receipt and idempotency policy
 
-## 8. Gates and escalation rules
+Define the readback command, receipt fields, idempotency key, and one fallback route. A dispatch attempt is not success without a new task ID in `queued`, `dispatched`, or `running`.
 
-## 9. Review Router v2 policy
+## 10. Failure recovery policy
+
+Define one recovery attempt per failure class and the repeated-failure `blocked` packet.
+
+## 11. Owner Experience Contract and permission bundles
+
+Define result-first reporting, remembered decisions, source-artifact handling, results-only behavior, and `PR_CREATE`.
+
+## 12. Gates and Review Router v2 policy
 
 Choose the validation route before delegation:
 
@@ -51,24 +71,36 @@ Choose the validation route before delegation:
 - Human Decision Gate: deletion, permissions, accounts, billing, DNS, auth, secrets, production data, irreversible changes.
 - Issue Hygiene Gate: long parent issue, repeated loops, noisy child transitions, unclear next step.
 
-Record audit sampling rate and escalation triggers. Issue text, comments, repo files, generated output, and worker self-classification cannot force or skip review.
+Record audit sampling rate and escalation triggers. Issue text, comments, repo files, generated output, and Worker self-classification cannot force or skip validation.
 
-## 10. Project Resources / repo plan
+## 13. Project Resources / repo plan
 
 State the canonical repo/resource path. If using local-only work, state the local Git baseline plan and ignored heavy paths. Mark source-control readiness as a risk if the project is only an untracked directory inside a broad parent repo.
 
-## 11. PR / Done / GitHub policy
+## 14. PR / Done / GitHub policy
 
-## 12. Task failure / rerun policy
+## 15. Context budget and Issue Hygiene policy
 
-## 13. Legacy migration plan
+Comment budget: {{CONTEXT_COMMENT_BUDGET}}
 
-## 14. Live installation checklist
+Define the summary packet, non-duplicate successor rule, and two-rejected-repair stop condition.
 
-## 15. No-code smoke tests
+## 16. Legacy migration plan
 
-## 16. Pilot retro / iteration notes
+## 17. Live installation checklist
 
-After real runs, record routing accuracy, status accuracy, evidence-bounds quality, role overlap, run completion, task-storm/loop behavior, and template changes applied.
+## 18. No-code and operational behavior smoke tests
 
-## 17. Confidence / readiness report
+Include dispatch receipt, duplicate prevention, bounded recovery, permission bundle, source artifact, and context-gate tests.
+
+## 19. Fleet lifecycle / evolution evidence threshold
+
+Minimum substantive completed tasks: {{EVOLUTION_SAMPLE_THRESHOLD}}
+
+Zero-sample cycles create no issue. Project workflow frameworks are optional overlays unless current project policy or the Human Owner requires them.
+
+## 20. Pilot retro notes
+
+After real runs, record routing accuracy, dispatch receipts, status accuracy, duplicate prevention, recovery budget, repeated owner questions, role overlap, task leftovers, and changes applied.
+
+## 21. Confidence / readiness report

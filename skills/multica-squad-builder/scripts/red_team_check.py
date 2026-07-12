@@ -25,6 +25,14 @@ checks = {
     'reviewer_taste_guard': ['User visual rejection beats Agent PASS', 'Reviewer cannot judge taste', 'PASS or BLOCKED'],
     'skip_review_guard': ['self-classification', 'cannot force or skip review'],
     'role_theme_policy': ['role theme presets', 'Role flavor may affect', 'must not override role separation'],
+    'topology_selector': ['Execution topology', 'Direct single agent', 'Routed single-worker', 'Staged or parallel squad'],
+    'dispatch_observability': ['Dispatch receipt', 'queued / dispatched / running', 'do not claim that dispatch succeeded'],
+    'idempotency': ['idempotency key', 'parent issue + accountable role + scope + deliverable', 'Never create two Workers'],
+    'bounded_recovery': ['agent_error', 'one recovery attempt', 'same failure class'],
+    'owner_experience': ['Owner Experience Contract', 'result first', 'Do not ask the same question twice', 'source artifact'],
+    'permission_bundle': ['PR_CREATE', 'push the task branch', 'separate gates'],
+    'context_budget': ['Context budget', '80 comments', 'successor issue'],
+    'fleet_evolution': ['Fleet lifecycle', 'at least three substantive completed tasks', 'zero-sample', 'optional overlay'],
 }
 missing=[]
 for name,terms in checks.items():

@@ -2,6 +2,8 @@
 
 Issue: {{ISSUE_KEY_OR_LINK}}
 PR: {{PR_LINK}}
+Idempotency key: {{WORK_PACKET_KEY}}
+Permission bundle: PR_CREATE / other
 
 ## Summary
 ## What changed

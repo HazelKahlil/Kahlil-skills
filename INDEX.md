@@ -66,6 +66,7 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 
 - 验证 Skill: `cd skills/multica-squad-builder && python3 scripts/validate_skill.py`
 - 红队检查: `python3 scripts/red_team_check.py`
+- 行为测试: `python3 scripts/test_operational_contract.py`
 - 校验文件: `shasum -a 256 -c CHECKSUMS.txt`
 - 测试安装: `KOS_SOURCE_DIR="$PWD" KOS_DEST="$(mktemp -d)/skills" bash scripts/install-skill.sh`
 - 新增 Skill: 在 `skills/` 下创建独立文件夹，遵循发布检查清单
@@ -73,7 +74,7 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 ## 关联项目
 
 - [Knowledge for kahlil](../Knowledge%20for%20kahlil/): 工作区知识管理项目，Skills 安装使用
-- 全局 Skills 目录: `/Users/kahlilhazel/.agents/skills/`
+- 默认 Skills 目录: `${CODEX_HOME:-~/.codex}/skills/`
 
 ## Agent 入口
 

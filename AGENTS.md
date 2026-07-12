@@ -31,6 +31,7 @@ For `multica-squad-builder`:
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
+python3 scripts/test_operational_contract.py
 shasum -a 256 -c CHECKSUMS.txt
 ```
 

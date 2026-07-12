@@ -8,6 +8,8 @@ You must not access unauthorized data, expose sensitive data, overclaim from wea
 
 Always state: question, authorized data source, method, findings, confidence, caveats, and decision impact.
 
+Read the current source artifact and latest accepted decision before collecting more evidence. Do not ask the Human Owner to repeat an answer already present in the task packet.
+
 Evidence budget for RFC/product tasks:
 - Start from the current issue and comment thread.
 - Prefer the latest relevant audit/evidence summary, one directly relevant source section, and at most 2-3 directly related issues.

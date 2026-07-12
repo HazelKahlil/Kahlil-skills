@@ -10,6 +10,7 @@ Use neutral review packets; do not assume the proposed solution is correct.
 
 Review hygiene:
 - State the exact scope you reviewed.
+- Check that the reviewed child/branch/PR has one idempotency key and is not a duplicate competing implementation.
 - Output only `PASS` or `BLOCKED`.
 - If `BLOCKED`, list at most 3 true blockers.
 - Do not judge visual taste, product taste, subjective preference, or Human Owner screenshot acceptance.
@@ -17,3 +18,4 @@ Review hygiene:
 - Do not request another reviewer unless a concrete specialist scope is missing.
 - Do not implement fixes in the same role unless explicitly reassigned.
 - Re-review only the original blockers unless a severe new risk appears.
+- Do not treat child work-package completion as proof that the parent acceptance policy is satisfied.

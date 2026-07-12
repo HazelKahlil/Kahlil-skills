@@ -13,7 +13,7 @@ without mixing package files together.
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| `multica-squad-builder` | `1.2.1` | Design, configure, audit, migrate, operate, and iterate Multica-style agent squads. |
+| `multica-squad-builder` | `1.4.0` | Select, design, audit, repair, operate, and iterate observable Multica-style agent squads. |
 
 ## Repository Layout
 
@@ -28,6 +28,7 @@ skills/
 docs/
   publishing-checklist.md
   sanitization-report.md
+  releases/
 ```
 
 ## Usage
@@ -38,6 +39,8 @@ For `multica-squad-builder`, start with:
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
 python3 scripts/red_team_check.py
+python3 scripts/test_operational_contract.py
+shasum -a 256 -c CHECKSUMS.txt
 ```
 
 Then adapt the templates for your own workspace, roster, project resources, and mention map. Do not reuse example placeholders as real IDs.
@@ -61,7 +64,7 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## Release Status
 
-Current public release: `multica-squad-builder` v1.2.1.
+Current public release: `multica-squad-builder` v1.4.0.
 
 ## Agent Maintenance
 
