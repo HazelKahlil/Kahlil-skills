@@ -73,7 +73,6 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 
 ## 关联项目
 
-- [Knowledge for kahlil](../Knowledge%20for%20kahlil/): 工作区知识管理项目，Skills 安装使用
 - 默认 Skills 目录: `${CODEX_HOME:-~/.codex}/skills/`
 
 ## Agent 入口
