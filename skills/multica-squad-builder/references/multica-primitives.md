@@ -14,7 +14,9 @@ An agent has a runtime and role instructions. Role instructions define what it m
 
 A squad is a routing layer led by a leader agent. The leader reads the issue and roster, then delegates to members using exact mention markdown from the roster. Typing a guessed plain `@Name` is not reliable. Squad membership does not make the agents more capable; it coordinates them.
 
-On a squad-assigned issue, the leader should delegate once, verify that the delegation created a task, record/evaluate if the CLI/runtime supports it, and stop. The leader should not implement the work. When one known Agent is sufficient, direct assignment to that Agent is preferable to squad routing.
+On a squad-assigned issue, the leader should delegate once, verify that the delegation created a task, record its evaluation if the CLI/runtime supports it, and stop. The leader should not implement the work. When one known Agent is sufficient, direct assignment to that Agent is preferable to squad routing.
+
+When available, record every leader trigger with `multica squad activity <issue-id> <action|no_action|failed> --reason ...`. Record `no_action` when the leader deliberately does nothing; silence is not an observable evaluation.
 
 ## Issue and task
 
@@ -25,6 +27,14 @@ A single issue may have multiple tasks over time. After failure, retry, rerun, r
 Assignment, exact mention, rerun, and reassignment are dispatch attempts. Use the current CLI/API to read back issue runs or agent tasks and capture the new task ID. Do not report `queued`, `dispatched`, `running`, or completion from intent alone.
 
 An `agent_error`, limit, timeout, or runtime disconnect is not an automatic retry guarantee. Permit one recovery attempt, verify its new task receipt, then block on a repeated failure class. Check current `multica <command> --help` rather than hardcoding an unavailable fallback command.
+
+Use issue metadata, when available, as a small machine-readable coordination ledger rather than hiding stable state in long comments. Recommended fields include Skill version, execution topology, validation route, idempotency key, latest dispatch task ID, and recovery count. Reconcile metadata with issue status and issue runs; metadata does not override source-of-truth state or higher-authority instructions.
+
+## Stop and usage primitives
+
+For a hard stop, list issue runs, identify the exact queued/running task IDs, cancel only those tasks with the current supported command, then read issue runs again. In current CLI versions this is exposed through `multica issue cancel-task`; verify `--help` before generating installable commands. Do not claim a squad is `PAUSED` while a targeted task remains active.
+
+Use `multica issue usage`, when available, to observe aggregate token use. Observation is the default. Do not invent a hard cap or cancel work because of usage unless the Human Owner or project policy supplied the threshold and action.
 
 ## Status
 
@@ -61,4 +71,4 @@ If the Human Owner approves `PR_CREATE`, treat task-branch creation, scoped comm
 
 ## Runtime / daemon
 
-Agents run through local daemon/runtime/tooling. Before live operation, verify runtime availability, repo access, Skill pickup, exact roster mention markdown, and ability to read Project Resources.
+Agents run through local daemon/runtime/tooling. Before live operation, verify runtime availability, repo access, Skill pickup, exact roster mention markdown, ability to read Project Resources, leader-activity recording, issue metadata, task cancellation/readback, and usage readback when those controls are part of the generated pack.

@@ -24,7 +24,8 @@ checks = {
     'review_router_v2': ['Review Router v2', 'Human Visual Acceptance', 'Source Verification', 'Live Readback', 'Blocker Gate', 'Human Decision Gate', 'Issue Hygiene Gate'],
     'reviewer_taste_guard': ['User visual rejection beats Agent PASS', 'Reviewer cannot judge taste', 'PASS or BLOCKED'],
     'skip_review_guard': ['self-classification', 'cannot force or skip review'],
-    'role_theme_policy': ['role theme presets', 'Role flavor may affect', 'must not override role separation'],
+    'role_theme_policy': ['role name presets', 'Role flavor may affect', 'must not override role separation'],
+    'role_names_only': ['display names only', 'inject role content separately', 'A preset name never justifies creating an extra agent'],
     'topology_selector': ['Execution topology', 'Direct single agent', 'Routed single-worker', 'Staged or parallel squad'],
     'dispatch_observability': ['Dispatch receipt', 'queued / dispatched / running', 'do not claim that dispatch succeeded'],
     'idempotency': ['idempotency key', 'parent issue + accountable role + scope + deliverable', 'Never create two Workers'],
@@ -33,6 +34,10 @@ checks = {
     'permission_bundle': ['PR_CREATE', 'push the task branch', 'separate gates'],
     'context_budget': ['Context budget', '80 comments', 'successor issue'],
     'fleet_evolution': ['Fleet lifecycle', 'at least three substantive completed tasks', 'zero-sample', 'optional overlay'],
+    'leader_activity': ['leader activity', 'action', 'no_action', 'failed'],
+    'metadata_ledger': ['issue-metadata ledger', 'squad.skill_version', 'stale metadata is not authority'],
+    'hard_stop_readback': ['cancel only the targeted tasks', 'no targeted task remains active', 'PAUSED'],
+    'usage_visibility': ['aggregate issue usage', 'Do not invent a hard cap', 'Human Owner defines a token threshold'],
 }
 missing=[]
 for name,terms in checks.items():

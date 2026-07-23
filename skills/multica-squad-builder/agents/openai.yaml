@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multica Squad Builder"
+  short_description: "Design, audit, and harden observable Multica squads"
+  default_prompt: "Use $multica-squad-builder to design or audit a lean Multica squad with observable dispatch and bounded recovery."

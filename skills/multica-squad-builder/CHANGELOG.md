@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.5.0 — Name Presets and Observable Control
+
+- Replaced the 14 fictional/IP-inspired role themes with six historical-figure name presets: 科学革命局、计算先驱实验室、世界文学编辑部、哲学决策议会、探索远征队、艺术创新工坊.
+- Reduced presets to display names only. Names no longer inject duties, expertise, personality, tone, permissions, or authority; project-specific role instructions supply those separately.
+- Added leader-activity outcomes for every Captain trigger: `action`, `no_action`, or `failed`, with receipt-aware reasons.
+- Added a compact issue-metadata coordination ledger for Skill version, topology, validation route, idempotency, dispatch task ID, and recovery count, with live-state reconciliation.
+- Added a verified kill-switch sequence using exact task cancellation and zero-active readback before `PAUSED`, while preserving issues, branches, PRs, and artifacts.
+- Added aggregate issue-usage visibility with observe-only defaults and no invented numeric token cap.
+- Updated setup, Captain, squad, rollout, config, red-team, and operational-contract coverage; added UI metadata in `agents/openai.yaml`.
+
 ## v1.4.0 — Observable Squad Operations
 
 - Added an execution-topology selector: direct single agent, routed single-worker, staged squad, or parallel squad. Generated packs must explain why a squad is needed before choosing roster size.

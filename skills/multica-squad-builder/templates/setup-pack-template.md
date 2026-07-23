@@ -5,6 +5,7 @@ Installability: NOT INSTALLABLE until all required placeholders and exact mentio
 Project: {{PROJECT_NAME}}
 Human Owner: {{HUMAN_OWNER}}
 Project type: {{PROJECT_ARCHETYPE}}
+Role name preset: {{ROLE_NAME_PRESET}}
 Issue prefix: {{ISSUE_PREFIX}}
 
 ## 1. Assumptions and open questions
@@ -22,6 +23,8 @@ Choose direct single agent for one known executor and one deliverable. Use route
 ## 4. Agent descriptions and role loadouts
 
 Record each role's runtime, attached Skills, missing capabilities, and source-of-truth readback. Do not hardcode model names in squad prose.
+
+If a role-name preset is selected, use it only to fill agent display names. Inject duties, permissions, expertise, and tone from the role instructions below; never infer them from a famous name.
 
 ## 5. Role-specific system instructions
 
@@ -50,11 +53,11 @@ Use `templates/squad-instructions.md` and adapt it to this project.
 
 ## 9. Dispatch receipt and idempotency policy
 
-Define the readback command, receipt fields, idempotency key, and one fallback route. A dispatch attempt is not success without a new task ID in `queued`, `dispatched`, or `running`.
+Define the readback command, receipt fields, idempotency key, one fallback route, leader-activity outcome, and issue-metadata ledger. A dispatch attempt is not success without a new task ID in `queued`, `dispatched`, or `running`. Metadata must be reconciled with live status and runs.
 
 ## 10. Failure recovery policy
 
-Define one recovery attempt per failure class and the repeated-failure `blocked` packet.
+Define one recovery attempt per failure class, the repeated-failure `blocked` packet, and the hard-stop sequence: stop new delegation, resolve exact task IDs, cancel targeted tasks, read back zero active targets, preserve artifacts, then mark `PAUSED`.
 
 ## 11. Owner Experience Contract and permission bundles
 
@@ -79,11 +82,11 @@ State the canonical repo/resource path. If using local-only work, state the loca
 
 ## 14. PR / Done / GitHub policy
 
-## 15. Context budget and Issue Hygiene policy
+## 15. Context/usage budget, kill switch, and Issue Hygiene policy
 
 Comment budget: {{CONTEXT_COMMENT_BUDGET}}
 
-Define the summary packet, non-duplicate successor rule, and two-rejected-repair stop condition.
+Define the summary packet, non-duplicate successor rule, two-rejected-repair stop condition, usage-observation policy, optional Human Owner token threshold, and the action when that threshold is crossed. Never invent a numeric cap.
 
 ## 16. Legacy migration plan
 
@@ -91,7 +94,7 @@ Define the summary packet, non-duplicate successor rule, and two-rejected-repair
 
 ## 18. No-code and operational behavior smoke tests
 
-Include dispatch receipt, duplicate prevention, bounded recovery, permission bundle, source artifact, and context-gate tests.
+Include dispatch receipt, leader activity, metadata reconciliation, duplicate prevention, bounded recovery, exact-task cancellation with zero-active readback, usage visibility, permission bundle, source artifact, and context-gate tests.
 
 ## 19. Fleet lifecycle / evolution evidence threshold
 
@@ -101,6 +104,6 @@ Zero-sample cycles create no issue. Project workflow frameworks are optional ove
 
 ## 20. Pilot retro notes
 
-After real runs, record routing accuracy, dispatch receipts, status accuracy, duplicate prevention, recovery budget, repeated owner questions, role overlap, task leftovers, and changes applied.
+After real runs, record routing accuracy, dispatch receipts, leader activity, metadata drift, status accuracy, duplicate prevention, recovery budget, task cancellation/readback, issue usage, repeated owner questions, role overlap, task leftovers, and changes applied.
 
 ## 21. Confidence / readiness report
