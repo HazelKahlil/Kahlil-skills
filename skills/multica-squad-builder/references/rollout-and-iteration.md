@@ -22,9 +22,11 @@
 11. Verify Project Resources or a clean local Git baseline. If the project is untracked inside a broad parent repo, keep LIVE blocked or document the traceability risk.
 12. Verify Skill pickup, role loadouts, and role boundaries from live readback.
 13. Verify Project Resources are visible to the agent when resources are used.
-14. Run no-code and operational behavior smoke tests.
-15. Run 2–3 low-risk pilot issues.
-16. Keep autopilots disabled until LIVE and explicit Human Owner approval.
+14. Verify leader-activity recording and the issue-metadata ledger when supported.
+15. Verify issue-run readback, exact task cancellation, and issue-usage readback when those controls are part of the pack.
+16. Run no-code and operational behavior smoke tests.
+17. Run 2–3 low-risk pilot issues.
+18. Keep autopilots disabled until LIVE and explicit Human Owner approval.
 
 ## No-code smoke tests
 
@@ -40,8 +42,12 @@ Expected:
 ## Operational behavior smoke tests
 
 - Dispatch receipt: a low-risk delegation produces a visible task ID in `queued`, `dispatched`, or `running`; the Captain does not claim success before readback.
+- Leader activity: every Captain trigger records `action`, `no_action`, or `failed` with a factual reason when supported; a failed dispatch without a receipt is not recorded as action.
+- State ledger: issue metadata stores only stable coordination fields and is reconciled with current status and runs before action.
 - Idempotency: repeating the same packet does not create a second child, Worker, branch, or PR.
 - Failure recovery: an injected failed dispatch gets one fallback; a repeated failure becomes `blocked` without a “continue” loop.
+- Kill switch: a test task is cancelled by exact task ID and readback shows no targeted queued/running task before `PAUSED` is claimed.
+- Usage visibility: aggregate issue usage is readable; no numeric limit is invented when the setup pack leaves the limit unset.
 - Permission bundle: one approved `PR_CREATE` reaches an open PR without asking again for task-branch push.
 - Owner experience: a results-only request gets a result-first response, and a source artifact is preserved.
 - Context gate: a long synthetic thread is summarized into one non-duplicate successor.
@@ -69,6 +75,8 @@ After at least three substantive completed tasks since the last review, or after
 - Were all runs completed with no queued/running/dispatched leftovers?
 - Was there any loop, duplicate delegation, or task storm?
 - Did every claimed dispatch have a receipt, and did recovery stay within budget?
+- Did every Captain trigger record the correct leader activity outcome, and did metadata agree with live runs?
+- Did any kill switch leave queued/running tasks behind, and was usage observed without inventing a cap?
 - Did the Human Owner repeat answers or approve the same PR action more than once?
 - Is each squad's mission distinct, and are stale squads/autopilots paused or proposed for lifecycle action?
 - What should change in role instructions, squad instructions, templates, or references?

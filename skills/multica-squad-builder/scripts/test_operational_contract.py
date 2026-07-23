@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import importlib.util
+import json
 import unittest
 
 
@@ -98,6 +99,52 @@ class OperationalContractTests(unittest.TestCase):
             "evolution evidence threshold",
         )
 
+    def test_role_name_presets_are_names_only(self) -> None:
+        text = read("references/role-theme-presets.md")
+        self.assertEqual(6, text.count("- display names:"))
+        for preset in (
+            "科学革命局",
+            "计算先驱实验室",
+            "世界文学编辑部",
+            "哲学决策议会",
+            "探索远征队",
+            "艺术创新工坊",
+        ):
+            self.assertIn(preset, text)
+        for removed_detail in ("role seeds", "best for", "tone hint", "Journey to the West", "Breaking Bad"):
+            self.assertNotIn(removed_detail, text)
+        self.assertIn("display names only", text)
+        self.assertIn("inject those responsibilities separately", text.lower())
+
+    def test_observability_and_hard_stop_controls_are_installable(self) -> None:
+        self.assert_terms(
+            "references/operational-reliability.md",
+            "leader activity",
+            "action",
+            "no_action",
+            "failed",
+            "issue-metadata ledger",
+            "cancel only the targeted tasks",
+            "no targeted task remains active",
+            "aggregate issue usage",
+            "do not invent a hard cap",
+        )
+        self.assert_terms(
+            "templates/agent-captain-system-instructions.md",
+            "record `action`, `no_action`, or `failed`",
+            "issue metadata",
+            "do not claim `paused`",
+            "aggregate issue usage",
+        )
+
+    def test_profile_exposes_new_coordination_controls(self) -> None:
+        profile = json.loads(read("config/squad-profile.template.json"))
+        self.assertIn("role_name_preset", profile)
+        self.assertTrue(profile["coordination"]["record_leader_activity"])
+        self.assertEqual("observe", profile["usage_budget"]["mode"])
+        self.assertIsNone(profile["usage_budget"]["token_limit"])
+        self.assertTrue(profile["kill_switch"]["require_zero_active_readback"])
+
     def test_minimal_pack_renders_without_hidden_placeholders(self) -> None:
         renderer_path = ROOT / "scripts/render_minimal_pack.py"
         spec = importlib.util.spec_from_file_location("render_minimal_pack", renderer_path)
@@ -109,6 +156,7 @@ class OperationalContractTests(unittest.TestCase):
         data = {
             "project_name": "Example Project",
             "squad_name": "Example Squad",
+            "role_name_preset": "科学革命局",
             "project_archetype": "existing_project",
             "execution_topology": "routed_single_worker",
             "squad_justification": "The issue is already squad-assigned and needs one routed Worker.",
@@ -142,6 +190,7 @@ class OperationalContractTests(unittest.TestCase):
         self.assertNotIn("{{", rendered)
         self.assertIn("Not installed", rendered)
         self.assertIn("routed_single_worker", rendered)
+        self.assertIn("科学革命局", rendered)
         self.assertIn("PR_CREATE", rendered)
 
 

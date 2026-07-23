@@ -18,7 +18,7 @@ Ask only questions that affect safety, scope, permissions, routing, data access,
 12. Which CI, tests, readbacks, or release gates define done?
 13. After creating the squad, what exact roster mention markdown does Multica show for Worker, Reviewer, Analyst, and Human Owner?
 14. What should the Human Owner experience be: results-only updates, visual source artifact, approval boundaries, and escalation format?
-15. What context budget and recovery budget should apply? Defaults: 80 comments, two rejected repair loops, and one recovery attempt per failure class.
+15. What context, recovery, and optional token budget should apply, and what should the kill switch do? Defaults: 80 comments, two rejected repair loops, one recovery attempt per failure class, usage observation without an invented cap, exact-task cancellation, and zero-active readback.
 16. Will this Skill be used only by a Squad Designer, or also attached to operational agents? Default: designer first; generated role instructions for operational agents.
 
 ## Conservative defaults
@@ -34,6 +34,8 @@ Ask only questions that affect safety, scope, permissions, routing, data access,
 - Multi-PR work uses child issues.
 - Plain `@Name` is not considered verified mention syntax.
 - Dispatch is successful only after a new task ID is read back in `queued`, `dispatched`, or `running`.
+- Record every leader trigger as `action`, `no_action`, or `failed` when supported, and keep stable coordination fields in issue metadata.
+- Observe issue usage without inventing a token cap. A kill switch cancels exact targeted tasks and requires zero-active readback before `PAUSED`.
 - Evolution reviews need three substantive completed tasks or a concrete failure trigger; zero-sample cycles create no issue.
 
 ## Setup output

@@ -1,6 +1,7 @@
 {
   "project_name": "<PROJECT_NAME>",
   "squad_name": "<SQUAD_NAME>",
+  "role_name_preset": null,
   "project_archetype": "new_project | existing_project | legacy_migration | takeover | temporary_project | incident | multi_repo",
   "execution_topology": "<EXECUTION_TOPOLOGY>",
   "squad_justification": "<SQUAD_JUSTIFICATION>",
@@ -31,6 +32,20 @@
     "rejected_repair_limit": 2
   },
   "failure_recovery_attempts_per_class": 1,
+  "coordination": {
+    "record_leader_activity": true,
+    "issue_metadata_namespace": "squad"
+  },
+  "usage_budget": {
+    "mode": "observe",
+    "token_limit": null,
+    "action_on_limit": "pause_new_delegation_and_escalate"
+  },
+  "kill_switch": {
+    "cancel_targeted_active_tasks": true,
+    "require_zero_active_readback": true,
+    "preserve_artifacts": true
+  },
   "evolution": {
     "substantive_completed_task_threshold": 3,
     "project_workflow_overlay": "optional"

@@ -23,11 +23,15 @@ Before creating work, inspect existing children, comments, runs, branches, and P
 
 After assignment or exact mention, read back issue runs or agent tasks. Only a new task ID in `queued`, `dispatched`, or `running` is a dispatch receipt. Do not claim the task started without it. Make one fallback dispatch attempt; if no receipt appears, set `blocked` and ask for one exact Human Owner action.
 
+After every leader trigger, record `action`, `no_action`, or `failed` with a short factual reason when squad activity recording is supported. Record `action` only after its expected receipt exists. Keep Skill version, topology, validation route, idempotency key, latest dispatch task ID, and recovery count in issue metadata when supported; reconcile that ledger with current status and runs before acting.
+
 Never claim a Goal, task, status transition, deployment, or completion state that has not been read back from its source of truth.
 
 ## Failure recovery
 
 After a failed or ambiguous task, reconcile status, accepted plan, assignee, repo/branch, PR issue-key policy, and passed gates. Allow one recovery attempt per failure class and verify its new task receipt. A repeated `agent_error`, limit, timeout, or disconnect becomes `blocked`; do not add repeated “continue” comments.
+
+For a kill switch, stop new delegation, suspend relevant autopilot triggers when authorized, resolve exact queued/running task IDs from issue runs, cancel only those tasks, and read runs back. Do not claim `PAUSED` until no targeted task remains active. Preserve issues, branches, PRs, and delivered artifacts; after one failed cancellation attempt, escalate the task ID.
 
 ## Review Router v2
 
@@ -43,6 +47,8 @@ Worker-proposed validation is advisory. Keep validation proportionate. Default b
 ## Owner experience and permissions
 
 Give the result first. Do not repeat a question or re-request approved work. Read and preserve the user's source artifact or visual baseline. Honor results-only requests.
+
+Observe aggregate issue usage when supported. Do not invent a numeric token limit. If {{HUMAN_OWNER}} or project policy defines one, store the threshold and action in the setup pack; crossing it pauses new delegation and escalates unless cancellation was explicitly authorized.
 
 `PR_CREATE` includes task branch, scoped commit, push of the task branch, and opening the PR. Merge, deploy, destructive actions, production data, accounts, permissions, billing, DNS, auth, and secrets remain separate gates.
 

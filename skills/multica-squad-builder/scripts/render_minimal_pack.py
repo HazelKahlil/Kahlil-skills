@@ -28,6 +28,7 @@ def fill(s, data):
     repl={
       '{{PROJECT_NAME}}': data.get('project_name','<PROJECT_NAME>'),
       '{{SQUAD_NAME}}': data.get('squad_name','<SQUAD_NAME>'),
+      '{{ROLE_NAME_PRESET}}': data.get('role_name_preset') or 'Custom / none',
       '{{PROJECT_ARCHETYPE}}': data.get('project_archetype','<PROJECT_ARCHETYPE>'),
       '{{EXECUTION_TOPOLOGY}}': data.get('execution_topology','<EXECUTION_TOPOLOGY>'),
       '{{SQUAD_JUSTIFICATION}}': data.get('squad_justification','<SQUAD_JUSTIFICATION>'),

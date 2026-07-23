@@ -43,6 +43,7 @@ if len(text) > 18000:
     errors.append(f"SKILL.md too large for lean core: {len(text)} chars > 18000")
 
 required = [
+    "agents/openai.yaml",
     "CHANGELOG.md",
     "CHECKSUMS.txt",
     "METRICS.json",
@@ -114,6 +115,12 @@ critical_terms = [
     "Fleet lifecycle",
     "zero-sample",
     "optional overlay",
+    "display names only",
+    "inject role content separately",
+    "leader activity",
+    "issue-metadata ledger",
+    "cancel only the targeted tasks",
+    "aggregate issue usage",
 ]
 markdown_blob = "\n".join(
     path.read_text(encoding="utf-8", errors="ignore")
@@ -126,9 +133,28 @@ for term in critical_terms:
 
 # Machine-readable config must stay valid JSON.
 try:
-    json.loads((ROOT / "config/squad-profile.template.json").read_text(encoding="utf-8"))
+    profile = json.loads((ROOT / "config/squad-profile.template.json").read_text(encoding="utf-8"))
 except (OSError, json.JSONDecodeError) as exc:
+    profile = {}
     errors.append(f"Invalid squad profile JSON: {exc}")
+
+for key in ("role_name_preset", "coordination", "usage_budget", "kill_switch"):
+    if key not in profile:
+        errors.append(f"Squad profile missing v1.5 control: {key}")
+
+role_presets_path = ROOT / "references/role-theme-presets.md"
+role_presets = role_presets_path.read_text(encoding="utf-8") if role_presets_path.exists() else ""
+if role_presets.count("- display names:") != 6:
+    errors.append("Role name preset library must contain exactly six display-name lists")
+for forbidden_detail in ("role seeds", "best for", "tone hint", "Journey to the West", "Breaking Bad"):
+    if forbidden_detail in role_presets:
+        errors.append(f"Role name presets still contain replaced detail: {forbidden_detail}")
+
+openai_yaml = ROOT / "agents/openai.yaml"
+openai_text = openai_yaml.read_text(encoding="utf-8") if openai_yaml.exists() else ""
+for field in ("display_name:", "short_description:", "default_prompt:", "$multica-squad-builder"):
+    if field not in openai_text:
+        errors.append(f"agents/openai.yaml missing: {field}")
 
 # Release metadata must describe the same version and exact package shape.
 version_path = ROOT / "VERSION"

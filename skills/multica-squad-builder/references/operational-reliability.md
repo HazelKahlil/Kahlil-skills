@@ -1,6 +1,6 @@
 # Operational Reliability
 
-Use this reference when designing a new squad or repairing one after real runs. Optimize for the smallest topology that can finish the work, observable dispatch, bounded recovery, and a low-friction Human Owner experience.
+Use this reference when designing a new squad or repairing one after real runs. Optimize for the smallest topology that can finish the work, observable dispatch and leader activity, machine-readable coordination, bounded recovery and stopping, usage visibility, and a low-friction Human Owner experience.
 
 ## Execution topology
 
@@ -25,6 +25,12 @@ Before creating a child issue, branch, PR, or new task packet, inspect existing 
 
 Continue an existing matching packet. Never create two Workers for the same key, even after a timeout or context reset. A retry must preserve the original key and accepted plan.
 
+## Leader activity and machine-readable state
+
+After every squad-leader trigger, record one evaluation outcome when supported: `action`, `no_action`, or `failed`, with a short factual reason. Record the activity only after checking whether the attempted action produced its expected receipt. A failed dispatch without a task receipt is `failed`, not `action`.
+
+Keep a compact issue-metadata ledger when supported. Recommended keys are `squad.skill_version`, `squad.topology`, `squad.validation_route`, `squad.idempotency_key`, `squad.dispatch_task_id`, and `squad.recovery_count`. Store only coordination state, never prompts, secrets, customer data, or long summaries. Before acting, reconcile metadata with current issue status, children, and issue runs; stale metadata is not authority.
+
 ## Failure recovery budget
 
 `agent_error`, session or usage limits, runtime disconnects, and timeouts do not prove that work will resume automatically. Reconcile the current issue, accepted plan, assignee, branch, PR, and completed gates before recovery.
@@ -32,6 +38,20 @@ Continue an existing matching packet. Never create two Workers for the same key,
 Allow one recovery attempt for a task failure: one verified rerun, fresh delegation, or reassignment chosen for the failure class. If the same failure class happens again, stop the loop, set `blocked`, and state the evidence and next external action. Do not post repeated “continue” comments without a newly created task receipt.
 
 Bad or context-poisoned output should start from a concise fresh work packet, not from an ambiguous transcript. Never invent a Goal, task, deployment, or completion state that has not been read back.
+
+## Kill switch and usage visibility
+
+A hard stop must be observable:
+
+1. Stop new delegation and suspend relevant autopilot triggers when authorized and supported.
+2. Read issue runs and resolve the exact queued/running task IDs.
+3. Cancel only the targeted tasks with the current supported command.
+4. Read issue runs again and verify that no targeted task remains active.
+5. Mark the squad or rollout `PAUSED`, preserving artifacts and stating the restart condition.
+
+Do not delete tasks, issues, branches, or artifacts as part of a pause. If cancellation is unavailable or a task remains active after one verified attempt, escalate with the task ID and required Human Owner action.
+
+Observe aggregate issue usage when the CLI/runtime supports it. Default to `observe`. Do not invent a hard cap. If the Human Owner defines a token threshold, record the threshold and action in the setup pack; crossing it pauses new delegation and escalates unless explicit policy authorizes cancellation.
 
 ## Owner Experience Contract
 
@@ -70,8 +90,11 @@ Project workflow frameworks are an optional overlay. Follow them when the projec
 
 - topology selected and why a squad is needed;
 - dispatch attempts versus valid receipts;
+- leader activity outcomes and reasons;
+- issue-metadata ledger drift or reconciliation;
 - duplicate packets prevented;
 - failure class, recovery attempt, and outcome;
+- task cancellations, zero-active readback, and usage at major handoffs;
 - comments per issue and repair-loop count;
 - repeated Human Owner questions or permission prompts;
 - substantive completed tasks since the last evolution review;
