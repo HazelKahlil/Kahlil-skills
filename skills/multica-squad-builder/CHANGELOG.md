@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.0.0 — Real Leader, Few Rules
+
+- Redesigned the leader from a routing/dispatch layer into a real leader: spec before dispatch, scale effort (small work done personally), self-contained briefs, judge/synthesize member output, unblock with decisions.
+- Cut procedural scaffolding that rotted mid-context: Review Router v2, Issue Hygiene Gate, Owner Experience Contract, mandatory leader activity, metadata ledgers, usage visibility, DRAFT/PILOT readiness ladder, kill switch sequences, 21-item setup packs, validation budgets, comment-count gates.
+- Three modes only: Setup (migration is a variant), Iterate, Audit.
+- Hard gates kept: Human Decision Gate, `PR_CREATE` bundle, done=merged-or-accepted, user visual veto, two-loop stop, untrusted task data.
+- Review is optional and risk-triggered: PASS or BLOCKED, max 3 blockers. Reviewer and Analyst marked optional.
+- Merged architecture/archetypes/interview into `references/squad-design.md`; compressed risk governance into `references/safety-gates.md`; added `references/leader-playbook.md`.
+- Removed operator manuals, RFC/PR/review/confidence/migration templates, red-team and operational-contract scripts, METRICS/CHECKSUMS, and v1.5 config/profile machinery.
+- Size discipline: `SKILL.md` ~70–80 lines; role instructions ≤1 page; squad instructions ≤2 pages.
+
+## v1.5.0 — Name Presets and Observable Control
+
+- Replaced the 14 fictional/IP-inspired role themes with six historical-figure name presets: 科学革命局、计算先驱实验室、世界文学编辑部、哲学决策议会、探索远征队、艺术创新工坊.
+- Reduced presets to display names only. Names no longer inject duties, expertise, personality, tone, permissions, or authority; project-specific role instructions supply those separately.
+- Added leader-activity outcomes for every Captain trigger: `action`, `no_action`, or `failed`, with receipt-aware reasons.
+- Added a compact issue-metadata coordination ledger for Skill version, topology, validation route, idempotency, dispatch task ID, and recovery count, with live-state reconciliation.
+- Added a verified kill-switch sequence using exact task cancellation and zero-active readback before `PAUSED`, while preserving issues, branches, PRs, and artifacts.
+- Added aggregate issue-usage visibility with observe-only defaults and no invented numeric token cap.
+- Updated setup, Captain, squad, rollout, config, red-team, and operational-contract coverage; added UI metadata in `agents/openai.yaml`.
+
 ## v1.4.0 — Observable Squad Operations
 
 - Added an execution-topology selector: direct single agent, routed single-worker, staged squad, or parallel squad. Generated packs must explain why a squad is needed before choosing roster size.

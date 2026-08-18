@@ -1,64 +1,55 @@
-# Multica Primitives Reference
+# Multica Primitives
 
-Use this reference when generating Multica-specific instructions.
+Use this reference when generating Multica-specific instructions. Check `multica <command> --help` before hardcoding flags.
 
 ## Skill
 
-A Skill is a knowledge pack: `SKILL.md` plus optional files such as scripts, configs, references, and templates. It must be attached to an agent to take effect. Edits affect newly created tasks, not tasks already running.
+A Skill is a knowledge pack (`SKILL.md` plus optional files). It must be attached to an agent to take effect. Edits affect newly created tasks, not tasks already running.
 
 ## Agent
 
-An agent has a runtime and role instructions. Role instructions define what it must do and what it must not do. A Skill augments the agent but should not replace role-specific system instructions.
+An agent has a runtime and role instructions. A Skill augments the agent; it does not replace role-specific instructions.
 
 ## Squad
 
-A squad is a routing layer led by a leader agent. The leader reads the issue and roster, then delegates to members using exact mention markdown from the roster. Typing a guessed plain `@Name` is not reliable. Squad membership does not make the agents more capable; it coordinates them.
+A squad is led by a leader agent. The leader reads the issue and roster, then delegates with exact mention markdown from the roster. Guessed plain `@Name` is unreliable. Membership coordinates agents; it does not make them more capable.
 
-On a squad-assigned issue, the leader should delegate once, verify that the delegation created a task, record/evaluate if the CLI/runtime supports it, and stop. The leader should not implement the work. When one known Agent is sufficient, direct assignment to that Agent is preferable to squad routing.
+When one known agent is sufficient, assign that agent directly.
 
 ## Issue and task
 
-Issues are the visible units of work. Tasks are agent work sessions created by assignment, mention, chat, autopilot, or rerun. Do not assume an issue is complete just because one task finished.
+Issues are the visible units of work. Tasks are agent work sessions created by assignment, mention, chat, autopilot, or rerun. One finished task does not complete an issue.
 
-A single issue may have multiple tasks over time. After failure, retry, rerun, reassignment, or parallel mention, re-check the issue state, latest comments, repo scope, and gates.
+Assignment, exact mention, rerun, and reassignment are dispatch attempts. Read back issue runs or agent tasks and capture the new task ID. Do not report `queued`, `dispatched`, `running`, or completion from intent alone.
 
-Assignment, exact mention, rerun, and reassignment are dispatch attempts. Use the current CLI/API to read back issue runs or agent tasks and capture the new task ID. Do not report `queued`, `dispatched`, `running`, or completion from intent alone.
-
-An `agent_error`, limit, timeout, or runtime disconnect is not an automatic retry guarantee. Permit one recovery attempt, verify its new task receipt, then block on a repeated failure class. Check current `multica <command> --help` rather than hardcoding an unavailable fallback command.
+An `agent_error`, limit, timeout, or disconnect is not an automatic retry. Permit one recovery attempt, verify its new task receipt, then block on a repeated failure class.
 
 ## Status
 
 Use: `backlog`, `todo`, `in_progress`, `in_review`, `blocked`, `done`, `cancelled`.
 
-Recommended semantics:
-
 - `backlog`: not ready to trigger agents.
-- `todo`: ready for squad routing.
-- `in_progress`: research, RFC, debugging, or implementation is underway.
+- `todo`: ready for routing.
+- `in_progress`: work is underway.
 - `in_review`: waiting on reviewer or Human Owner.
-- `blocked`: requires external input; comment must state the blocker.
-- `done`: for a child, its defined work packet and evidence are complete; for the parent, PR merged or Human Owner accepts the whole no-PR result.
+- `blocked`: needs external input; the comment states the blocker.
+- `done`: child packet complete; parent requires PR merge or Human Owner no-PR acceptance.
 - `cancelled`: intentionally not doing it.
 
-Required transition discipline:
+Move accepted routed work from `todo` to `in_progress`. Keep parent `done` for merge or explicit no-PR acceptance.
 
-- Captain moves accepted routed work from `todo` to `in_progress`.
-- Captain moves review-passed RFCs, research results, and no-PR implementation results to `in_review` before Human Owner acceptance.
-- Captain does not leave review-passed work in `in_progress` merely because the trigger did not explicitly request a status change.
-- `done` remains reserved for PR merge or explicit Human Owner no-PR acceptance.
+Wake fact: only a child `done` or `cancelled` wakes the leader. Members who need the leader set `blocked` and `@mention` the leader. A comment alone does not start a leader run.
 
 ## Project Resources
 
-Prefer Project Resources for repo and project context. Do not rely on an issue comment alone to describe which repo/service/branch is in scope. Verify that the project resource list is visible to the agent before treating the setup as live.
-
-Before LIVE, require either a Project Resource / canonical checkout or a clean local Git baseline for the project. If the project directory appears only as an untracked directory inside a broad parent repository, mark source-control readiness as a risk: reviewers cannot use Git diff as strong proof of changed-file scope. A lightweight local Git baseline with heavy paths ignored is acceptable when remote GitHub/PR flow is not desired.
+Prefer Project Resources for repo and project context. Verify the resource list is visible to the agent before treating setup as live. A project that exists only as an untracked directory inside a broad parent repo is a source-control readiness risk.
 
 ## GitHub / PR
 
-When an issue key appears in PR branch, title, or body, integration may link the PR to that issue; when the PR merges, the issue may move to Done. For multi-PR parent work, use child issues or avoid parent issue keys in partial PRs.
+When an issue key appears in PR branch, title, or body, merge may move that issue to Done. For multi-PR parent work, use child issues.
 
-If the Human Owner approves `PR_CREATE`, treat task-branch creation, scoped commit, task-branch push, and opening the PR as one permission bundle. Merge and deploy remain separate unless current project policy explicitly says otherwise.
+If the Human Owner approves `PR_CREATE`, treat task-branch creation, scoped commit, task-branch push, and opening the PR as one permission bundle. Merge and deploy remain separate.
 
-## Runtime / daemon
+## Runtime
 
-Agents run through local daemon/runtime/tooling. Before live operation, verify runtime availability, repo access, Skill pickup, exact roster mention markdown, and ability to read Project Resources.
+Before live operation, verify runtime availability, repo access, Skill pickup, exact roster mention markdown, and Project Resource visibility.

@@ -8,7 +8,7 @@ This repository accepts reusable skill packages only. Keep contributions generic
 - Use neutral placeholder names for workspace-specific values instead of real IDs.
 - Keep each Skill self-contained under `skills/<skill-name>/`.
 - Include validation scripts when practical.
-- Update `README.md`, `CHANGELOG.md`, `VERSION`, `METRICS.json`, and `CHECKSUMS.txt` when a skill release changes.
+- Update `README.md`, `CHANGELOG.md`, and `VERSION` when a skill release changes.
 
 ## Validation
 
@@ -17,8 +17,6 @@ For `multica-squad-builder`:
 ```bash
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
-python3 scripts/red_team_check.py
-shasum -a 256 -c CHECKSUMS.txt
 ```
 
 Also run the repository-level sanitization checks in `docs/publishing-checklist.md`.

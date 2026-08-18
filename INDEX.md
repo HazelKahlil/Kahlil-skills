@@ -1,29 +1,24 @@
 # Kahlil-skills — 项目索引
 
 > 状态: active
-> 上次更新: 2026-06-11
+> 上次更新: 2026-08-18
 > 根索引: [INVENTORY.md](../../INVENTORY.md) | 入口: [README.md](./README.md)
 
 ## 全景
 
-Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前包含 `multica-squad-builder`（v1.2.0，Review Router v2），用于设计、配置、审计、迁移、运营和迭代 Multica 风格的 Agent 小队。每个 Skill 放在 `skills/` 下的独立文件夹中，遵循标准化验证流程（validate_skill + red_team_check + checksum）后才发布，通过远程 curl 脚本一键安装。
+Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前包含 `multica-squad-builder`（v2.0.0，队长章程 + 最小硬门），用于设计、迭代和审计 Multica 风格的 Agent 小队。每个 Skill 放在 `skills/` 下的独立文件夹中，发布前通过 validate_skill 校验和仓库清理扫描，通过远程 curl 脚本一键安装。
 
 ## 目录结构
 
 | 路径 | 用途 |
 |------|------|
 | skills/multica-squad-builder/ | 核心 Skill 包 |
-| skills/multica-squad-builder/SKILL.md | Skill 主定义文件 |
-| skills/multica-squad-builder/scripts/ | 验证脚本（validate_skill.py、red_team_check.py、render_minimal_pack.py） |
-| skills/multica-squad-builder/templates/ | Agent 角色指令模板（captain、reviewer、worker、analyst）和交付物模板（RFC、review、migration 等） |
-| skills/multica-squad-builder/config/ | 小队配置模板（squad-profile.template.json） |
-| skills/multica-squad-builder/references/ | 参考文档（架构、角色预设、风控、部署指南等 9 篇） |
+| skills/multica-squad-builder/SKILL.md | Skill 主定义文件（队长章程、硬门、3 种模式） |
+| skills/multica-squad-builder/scripts/ | 验证脚本（validate_skill.py） |
+| skills/multica-squad-builder/templates/ | Agent 角色指令模板（leader、worker、reviewer、analyst）、小队说明与 setup pack 模板 |
+| skills/multica-squad-builder/references/ | 参考文档（队长手册、小队设计、平台事实、安全门、角色人设预设，共 5 篇） |
 | skills/multica-squad-builder/CHANGELOG.md | 变更日志 |
-| skills/multica-squad-builder/CHECKSUMS.txt | 文件校验和 |
-| skills/multica-squad-builder/METRICS.json | 度量数据 |
-| skills/multica-squad-builder/RED_TEAM_REPORT-*.md | 红队安全审计报告 |
-| skills/multica-squad-builder/RELEASE_NOTES-*.md | 版本发布说明 |
-| docs/ | 发布检查清单、清理报告 |
+| docs/ | 发布检查清单、清理报告、历史发布文档（docs/releases/） |
 | scripts/install-skill.sh | 安装脚本 |
 
 ## 关键文件
@@ -44,9 +39,8 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 ## 技术栈
 
 - **Skill 定义**: Markdown（SKILL.md）
-- **验证脚本**: Python 3（validate_skill.py、red_team_check.py、render_minimal_pack.py）
+- **验证脚本**: Python 3（validate_skill.py）
 - **安装**: Bash Shell 脚本（curl + install-skill.sh）
-- **校验**: SHA-256 checksums
 
 ## 依赖与集成
 
@@ -65,9 +59,6 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 ## 常见操作
 
 - 验证 Skill: `cd skills/multica-squad-builder && python3 scripts/validate_skill.py`
-- 红队检查: `python3 scripts/red_team_check.py`
-- 行为测试: `python3 scripts/test_operational_contract.py`
-- 校验文件: `shasum -a 256 -c CHECKSUMS.txt`
 - 测试安装: `KOS_SOURCE_DIR="$PWD" KOS_DEST="$(mktemp -d)/skills" bash scripts/install-skill.sh`
 - 新增 Skill: 在 `skills/` 下创建独立文件夹，遵循发布检查清单
 

@@ -3,8 +3,8 @@
 [简体中文](README.zh-CN.md)
 
 Kahlil Skills is a public collection of installable AI agent Skills. The first
-Skill is `multica-squad-builder`, a lean Skill for designing, configuring,
-auditing, migrating, operating, and iterating Multica-style agent squads.
+Skill is `multica-squad-builder`, a lean Skill for designing, iterating, and
+auditing Multica-style agent squads.
 
 Each Skill lives in its own folder under `skills/`, so the repository can grow
 without mixing package files together.
@@ -13,7 +13,7 @@ without mixing package files together.
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| `multica-squad-builder` | `1.4.0` | Select, design, audit, repair, operate, and iterate observable Multica-style agent squads. |
+| `multica-squad-builder` | `2.0.0` | Design, iterate, and audit Multica-style agent squads with a leader charter and minimal hard gates. |
 
 ## Repository Layout
 
@@ -23,7 +23,6 @@ skills/
     SKILL.md
     references/
     templates/
-    config/
     scripts/
 docs/
   publishing-checklist.md
@@ -38,9 +37,6 @@ For `multica-squad-builder`, start with:
 ```bash
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
-python3 scripts/red_team_check.py
-python3 scripts/test_operational_contract.py
-shasum -a 256 -c CHECKSUMS.txt
 ```
 
 Then adapt the templates for your own workspace, roster, project resources, and mention map. Do not reuse example placeholders as real IDs.
@@ -64,7 +60,7 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## Release Status
 
-Current public release: `multica-squad-builder` v1.4.0.
+Current public release: `multica-squad-builder` v2.0.0.
 
 ## Agent Maintenance
 

@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前第一个 Skill 是 `multica-squad-builder`，用于设计、配置、审计、迁移、运营和迭代 Multica 风格的 Agent 小队。
+Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前第一个 Skill 是 `multica-squad-builder`，用于设计、迭代和审计 Multica 风格的 Agent 小队。
 
 每个 Skill 都放在 `skills/` 下面的独立文件夹里，后续新增 Skill 时不会把不同包的文件混在一起。
 
@@ -10,7 +10,7 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 
 | Skill | 版本 | 用途 |
 | --- | --- | --- |
-| `multica-squad-builder` | `1.4.0` | 选择、设计、审计、修复、运营和迭代可观测的 Multica 风格 Agent 小队。 |
+| `multica-squad-builder` | `2.0.0` | 以队长章程和最小硬门设计、迭代和审计 Multica 风格 Agent 小队。 |
 
 ## 仓库结构
 
@@ -20,7 +20,6 @@ skills/
     SKILL.md
     references/
     templates/
-    config/
     scripts/
 docs/
   publishing-checklist.md
@@ -35,9 +34,6 @@ docs/
 ```bash
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
-python3 scripts/red_team_check.py
-python3 scripts/test_operational_contract.py
-shasum -a 256 -c CHECKSUMS.txt
 ```
 
 使用时，根据你自己的工作区、成员、小队名单、项目资源和 mention map 调整模板。不要把示例占位符当成真实 ID 使用。
@@ -61,7 +57,7 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## 发布状态
 
-当前公开版本：`multica-squad-builder` v1.4.0。
+当前公开版本：`multica-squad-builder` v2.0.0。
 
 ## Agent 维护说明
 

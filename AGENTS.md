@@ -17,7 +17,7 @@ Before changing files:
 Before publishing changes:
 
 1. For each changed skill, run its validation scripts.
-2. Regenerate checksums and metrics when files inside a skill package change.
+2. Update `VERSION` and `CHANGELOG.md` when files inside a skill package change.
 3. Run the repository sanitization checks from `docs/publishing-checklist.md`.
 4. If `scripts/install-skill.sh` or install instructions change, test the
    installer with a temporary `KOS_DEST`.
@@ -30,9 +30,6 @@ For `multica-squad-builder`:
 ```bash
 cd skills/multica-squad-builder
 python3 scripts/validate_skill.py
-python3 scripts/red_team_check.py
-python3 scripts/test_operational_contract.py
-shasum -a 256 -c CHECKSUMS.txt
 ```
 
 For the installer:

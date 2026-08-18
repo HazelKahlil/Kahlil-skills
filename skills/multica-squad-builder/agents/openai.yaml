@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multica Squad Builder"
+  short_description: "Design or audit a Multica squad with a real leader and few gates"
+  default_prompt: "Use $multica-squad-builder to design or iterate a Multica squad: pick topology, write a leader charter, and keep only necessary gates."

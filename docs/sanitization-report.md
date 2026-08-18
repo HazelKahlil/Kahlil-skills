@@ -1,6 +1,6 @@
 # Sanitization Report / 清理报告
 
-Current release audit: `multica-squad-builder` v1.4.0 (2026-07-12).
+Current release audit: `multica-squad-builder` v2.0.0 (2026-08-18).
 
 ## Scope
 
@@ -22,9 +22,7 @@ Excluded:
 
 The source skill and public repository were checked for private local paths, Multica mention links, workspace IDs, agent IDs, member IDs, issue IDs, project-specific references, issue keys, and common secret patterns.
 
-Latest audit result: no private IDs, local paths, mention links, issue keys, or real secret/token patterns were found.
-
-The broad issue-key regex reports the public label `SHA-256` in `INDEX.md`; manual inspection confirmed that it is a checksum name, not an issue key.
+Latest audit result: no private IDs, local paths, mention links, issue keys, or real secret/token patterns were found. Broad-regex hits such as `SHA-256` labels in historical release documents are public checksum names, verified by manual inspection.
 
 中文结论：当前公开仓库已按开源发布标准做过清理检查，没有发现私有路径、工作区 ID、Agent/成员/Issue ID、mention 链接、Issue key 或真实密钥/token 模式。
 
