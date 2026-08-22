@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kahlil Aesthetic asset manifest v2",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "assetId", "createdAt", "name", "assetKind", "status", "missing", "sources", "evidence", "analysis", "generation", "views"],
+  "properties": {
+    "schemaVersion": { "const": 2 }, "kind": { "const": "kahlil-aesthetic-asset" },
+    "assetId": { "type": "string", "format": "uuid" }, "createdAt": { "type": "string", "format": "date-time" },
+    "name": { "type": "string" }, "assetKind": { "enum": ["image", "screenshot", "url", "content"] },
+    "status": { "enum": ["complete", "partial", "blocked"] }, "missing": { "type": "array", "items": { "type": "string" } },
+    "sources": { "type": "array", "minItems": 1 }, "evidence": { "type": "array" }, "capture": { "type": "object" },
+    "legacyCapture": { "type": "object" }, "analysis": { "type": "object" }, "generation": { "type": "object" }, "views": { "type": "object" }
+  }
+}

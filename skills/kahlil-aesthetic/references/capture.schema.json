@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kahlil Aesthetic inert URL capture v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "captureId", "sourceUrl", "finalUrl", "capturedAt", "mode", "pageSha256"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "kind": { "const": "kahlil-aesthetic-capture" }, "captureId": { "type": "string", "format": "uuid" },
+    "sourceUrl": { "type": "string", "format": "uri" }, "finalUrl": { "type": "string", "format": "uri" },
+    "capturedAt": { "type": "string", "format": "date-time" }, "mode": { "const": "public-logged-out" },
+    "pageSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

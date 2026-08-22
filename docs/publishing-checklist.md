@@ -39,11 +39,20 @@ cd skills/<skill-name>
 python3 scripts/validate_skill.py
 ```
 
+Current package checks:
+
+```bash
+bash skills/kahlil-cover/tests/validate-skill.sh
+(cd skills/kahlil-aesthetic && node --test tests/*.test.mjs)
+node skills/kahlil-card/scripts/check-skill-docs.mjs
+```
+
 ## Installation
 
 - [ ] One-line install command is present in `README.md` and `README.zh-CN.md`.
 - [ ] `scripts/install-skill.sh` installs into `${CODEX_HOME:-~/.codex}/skills`.
 - [ ] Installer has been tested with a temporary destination.
+- [ ] `bash scripts/install-skill.sh all` installs every public Skill into a clean temporary destination.
 
 ## GitHub
 

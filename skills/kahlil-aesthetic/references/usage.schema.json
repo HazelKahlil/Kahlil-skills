@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kahlil Aesthetic Agent project usage v1",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "usageId", "eventId", "eventPayloadHash", "recordedAt", "assetId", "projectId", "projectName", "deliverable", "status", "mode", "referenceUsed", "appliedDimensions", "outputs", "feedback", "outcome"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "kind": { "const": "kahlil-aesthetic-usage" },
+    "usageId": { "type": "string", "format": "uuid" }, "eventId": { "type": "string", "format": "uuid" }, "eventPayloadHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "recordedAt": { "type": "string", "format": "date-time" }, "assetId": { "type": "string", "format": "uuid" },
+    "projectId": { "type": "string" }, "projectName": { "type": "string" }, "deliverable": { "type": "string" },
+    "status": { "enum": ["consulted", "applied"] }, "mode": { "enum": ["adaptive", "material-faithful", "composition-faithful"] },
+    "referenceUsed": { "type": "boolean" }, "appliedDimensions": { "type": "array", "items": { "type": "string" } },
+    "outputs": { "type": "array" }, "feedback": { "type": "array" }, "outcome": { "enum": ["unknown", "effective", "partial", "ineffective"] },
+    "score": { "type": "number", "minimum": 0, "maximum": 100 }
+  }
+}

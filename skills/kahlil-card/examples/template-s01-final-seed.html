@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>kahlil-card · S01 seed</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root {
+      --paper: #F6F2EA;
+      --ink: #282829;
+      --brown: #553B33;
+      --grey-1: #EFE9DF;
+      --grey-2: #D9D2C6;
+      --accent: #ED581E;
+      --accent-on: #F6F2EA;
+      --sans: "Helvetica Neue", Helvetica, Arial, -apple-system, "PingFang SC", sans-serif;
+      --sans-zh: -apple-system, "PingFang SC", "Microsoft YaHei UI", sans-serif;
+      --mono: "SF Mono", Consolas, "Liberation Mono", monospace;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-11: 80px;
+      --sp-12: 96px;
+    }
+
+    @font-face {
+      font-family: "Local Canela";
+      src: url("assets/fonts/CanelaText-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "Local Futura";
+      src: url("assets/fonts/Futura-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "S01 Ruizi Xianxi";
+      src: url("assets/fonts/ruizi-xianxi.ttf") format("truetype");
+      font-weight: 300;
+      font-style: normal;
+      font-display: block;
+    }
+
+    *,*::before,*::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #141414;
+      font-family: var(--sans);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 24px 72px;
+    }
+    .sheet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .poster {
+      position: relative;
+      width: 1080px;
+      height: 1440px;
+      background: var(--paper);
+      color: var(--ink);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding: var(--sp-12) var(--sp-11);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chrome-min {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex: 0 0 auto;
+      font-family: var(--mono);
+      font-size: 18px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--brown);
+      padding-bottom: var(--sp-6);
+      border-bottom: 1px solid var(--grey-2);
+      margin-bottom: 0;
+    }
+
+    /* 页眉与页脚之间：标题 / 中文 / 橙色模块 / 导语 整体垂直居中 */
+    .k-main, .s01-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .s01-head {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-7);
+      flex: 0 0 auto;
+    }
+    .t-cat {
+      margin: 0;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent); /* B3: category orange */
+    }
+    .s01-font-title {
+      margin: 0;
+      font-weight: 200;
+      font-size: 124px;
+      line-height: 1.02;
+      letter-spacing: -.015em;
+      color: var(--ink);
+    }
+    .s01-font-title .latin {
+      display: block;
+      color: var(--accent); /* B3: title orange */
+    }
+    .s01-font-title .cn {
+      display: block;
+      margin-top: 28px; /* A: larger EN/CN gap */
+      font-family: "S01 Ruizi Xianxi", "PingFang SC", sans-serif;
+      font-weight: 300;
+      font-size: .88em;
+      letter-spacing: .015em;
+      color: var(--ink);
+      font-synthesis: none;
+    }
+
+    /* Default final: Futura mixed case */
+    .en-futura .s01-font-title .latin {
+      font-family: "Local Futura", Futura, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: .02em;
+      text-transform: none;
+    }
+    .en-futura .system-main .system-value,
+    .en-futura .system-arrow {
+      font-family: "Local Futura", Futura, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 500;
+      letter-spacing: .01em;
+      text-transform: none;
+    }
+
+    /* Alt: Canela ALL CAPS + tight tracking */
+    .en-canela .s01-font-title .latin {
+      font-family: "Local Canela", "Canela Text", Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .en-canela .system-main .system-value,
+    .en-canela .system-arrow {
+      font-family: "Local Canela", "Canela Text", Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .s01-system {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 176px 176px;
+      margin-top: 56px;
+      flex: 0 0 auto;
+      border-top: 1px solid var(--grey-2);
+      border-bottom: 1px solid var(--grey-2);
+    }
+    .s01-system .system-main {
+      grid-column: 1 / span 7;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px;
+      background: var(--accent);
+      color: var(--accent-on);
+    }
+    .s01-system .system-node {
+      grid-column: 8 / span 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px 32px;
+      background: var(--grey-1);
+      color: var(--ink);
+      border-left: 1px solid var(--grey-2);
+    }
+    .s01-system .system-node + .system-node {
+      border-top: 1px solid var(--grey-2);
+    }
+    .system-label {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .s01-system .system-node .system-label { color: var(--brown); }
+    .system-value {
+      font-size: 60px;
+      line-height: 1;
+    }
+    .system-node .system-value {
+      font-family: var(--sans-zh); /* C0 keep original */
+      font-weight: 400;
+      font-size: 34px;
+      line-height: 1.2;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .system-arrow {
+      align-self: flex-end;
+      font-size: 64px;
+      line-height: .75;
+    }
+
+    .s01-lead {
+      max-width: 760px;
+      margin: 48px 0 0;
+      flex: 0 0 auto;
+      font-family: var(--sans-zh); /* C0 keep original */
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .s01-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      flex: 0 0 auto;
+      gap: var(--sp-7);
+      margin-top: 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--grey-2);
+    }
+    .t-meta {
+      margin: 0;
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--brown);
+    }
+    .s01-bottom .t-meta:last-child { text-align: right; }
+
+    body.render-single { padding: 0; background: #111; }
+    body.render-single .sheet { gap: 0; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <!--
+      kahlil-card seed (S01).
+      Replace POSTERS content; keep chrome/footer slots & tokens.
+      Default EN = Futura. Optional second poster uses Canela ALL CAPS.
+    -->
+    <!-- POSTERS_HERE -->
+    <section class="poster en-futura" id="card-01">
+      <div class="content">
+        <div class="chrome-min">
+          <span>Hazelkahlil · AI NATIVE</span>
+          <span>Vol. 01 / 2026 / S01</span>
+        </div>
+        <div class="k-main s01-main">
+          <div class="s01-head">
+            <p class="t-cat">S01 / ACCENT COVER</p>
+            <h1 class="s01-font-title">
+              <span class="latin">AI native</span>
+              <span class="cn">不是答案</span>
+            </h1>
+          </div>
+          <div class="s01-system">
+            <div class="system-main">
+              <span class="system-label">01 / INPUT</span>
+              <span class="system-value">See first</span>
+              <span class="system-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="system-node">
+              <span class="system-label">02 / PROCESS</span>
+              <span class="system-value">先判断</span>
+            </div>
+            <div class="system-node">
+              <span class="system-label">03 / OUTPUT</span>
+              <span class="system-value">再生成</span>
+            </div>
+          </div>
+          <p class="s01-lead">先把问题看清楚<br>再决定要不要生成。</p>
+        </div>
+        <div class="s01-bottom">
+          <p class="t-meta">Issue 01</p>
+          <p class="t-meta">/ Hazelkahlil</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALT: Canela ALL CAPS -->
+    <section class="poster en-canela" id="card-01-canela-alt">
+      <div class="content">
+        <div class="chrome-min">
+          <span>Hazelkahlil · AI NATIVE</span>
+          <span>Vol. 01 / 2026 / S01</span>
+        </div>
+        <div class="k-main s01-main">
+          <div class="s01-head">
+            <p class="t-cat">S01 / ACCENT COVER</p>
+            <h1 class="s01-font-title">
+              <span class="latin">AI native</span>
+              <span class="cn">不是答案</span>
+            </h1>
+          </div>
+          <div class="s01-system">
+            <div class="system-main">
+              <span class="system-label">01 / INPUT</span>
+              <span class="system-value">See first</span>
+              <span class="system-arrow" aria-hidden="true">→</span>
+            </div>
+            <div class="system-node">
+              <span class="system-label">02 / PROCESS</span>
+              <span class="system-value">先判断</span>
+            </div>
+            <div class="system-node">
+              <span class="system-label">03 / OUTPUT</span>
+              <span class="system-value">再生成</span>
+            </div>
+          </div>
+          <p class="s01-lead">先把问题看清楚<br>再决定要不要生成。</p>
+        </div>
+        <div class="s01-bottom">
+          <p class="t-meta">Issue 01</p>
+          <p class="t-meta">/ Hazelkahlil</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const id = new URLSearchParams(location.search).get('page') || new URLSearchParams(location.search).get('id');
+    if (id) {
+      document.body.classList.add('render-single');
+      document.querySelectorAll('.poster').forEach((el) => {
+        el.style.display = el.id === id ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -2,71 +2,66 @@
 
 [English](README.md)
 
-Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当前第一个 Skill 是 `multica-squad-builder`，用于设计、迭代和审计 Multica 风格的 Agent 小队。
+Kahlil Skills 是一个公开、可复用的 AI Agent Skills 合集。每个 Skill 都独立放在 `skills/` 下，按需携带自己的指令、参考文档、资产、脚本和验证方式。
 
-每个 Skill 都放在 `skills/` 下面的独立文件夹里，后续新增 Skill 时不会把不同包的文件混在一起。
-
-## Skill
+## Skills
 
 | Skill | 版本 | 用途 |
 | --- | --- | --- |
-| `multica-squad-builder` | `2.0.0` | 以队长章程和最小硬门设计、迭代和审计 Multica 风格 Agent 小队。 |
-
-## 仓库结构
-
-```text
-skills/
-  multica-squad-builder/
-    SKILL.md
-    references/
-    templates/
-    scripts/
-docs/
-  publishing-checklist.md
-  sanitization-report.md
-  releases/
-```
-
-## 使用方式
-
-验证 `multica-squad-builder`：
-
-```bash
-cd skills/multica-squad-builder
-python3 scripts/validate_skill.py
-```
-
-使用时，根据你自己的工作区、成员、小队名单、项目资源和 mention map 调整模板。不要把示例占位符当成真实 ID 使用。
+| `multica-squad-builder` | `2.0.0` | 设计、迭代和审计 Multica 风格 Agent 小队。 |
+| `kahlil-cover` | `0.2.0` | 把文章或选题转成与内容对应的社媒封面提示词，支持 IP 角色版和内容视觉版。 |
+| `kahlil-aesthetic` | `2.0.0` | 把已经选定的视觉参考保存为可验证、可复用的审美证据。 |
+| `kahlil-card` | `1.0.0` | 生成 Kahlil 品牌社媒卡组、公众号封面对和 Live Photo 卡片。 |
 
 ## 安装
 
-把下面这条命令复制给 Agent，让它在命令行里执行：
+安装单个 Skill：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash
+bash scripts/install-skill.sh kahlil-cover
+bash scripts/install-skill.sh kahlil-aesthetic
+bash scripts/install-skill.sh kahlil-card
 ```
 
-它会把 `multica-squad-builder` 安装到 `${CODEX_HOME:-~/.codex}/skills/multica-squad-builder`。
-安装后需要重启 Codex 或 Agent 运行时，新的 Skill 才会被加载。
-
-如果本地已经有旧版本，需要覆盖安装：
+安装全部公开 Skill：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
+bash scripts/install-skill.sh all
 ```
 
-## 发布状态
+在没有克隆仓库的机器上，也可以直接从 GitHub 管道安装：
 
-当前公开版本：`multica-squad-builder` v2.0.0。
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash -s -- all
+```
 
-## Agent 维护说明
+安装脚本默认写入 `${CODEX_HOME:-~/.codex}/skills/<skill-name>`。审核时可以用 `KOS_DEST` 指定临时目录；覆盖已有版本时加 `KOS_OVERWRITE=1`。安装后重启 Codex 或 Agent 运行时。
 
-Agent 更新这个仓库前，应先阅读并遵守 `AGENTS.md`，再进行编辑、验证、提交或发布。
+## 验证
 
-## 发布规则
+```bash
+cd skills/multica-squad-builder && python3 scripts/validate_skill.py
+cd skills/kahlil-cover && bash tests/validate-skill.sh
+cd skills/kahlil-aesthetic && node --test tests/*.test.mjs
+node skills/kahlil-card/scripts/check-skill-docs.mjs
+```
 
-发布新的 Skill 或版本前，先运行 `docs/publishing-checklist.md` 里的检查。
+完整发布检查见 `docs/publishing-checklist.md`。仓库按公开安全设计：不放私有工作区资料、凭证、本机绝对路径或内部生成报告。
+
+## 目录结构
+
+```text
+skills/<skill-name>/
+  SKILL.md
+  README.md              # 需要面向人的使用说明时提供
+  VERSION
+  CHANGELOG.md
+  agents/                # 可选 UI 元数据
+  references/            # 条件式说明与 schema
+  assets/                # 模板、字体、图片或测试夹具
+  scripts/               # 可重复执行的辅助脚本
+```
 
 ## 许可证
 
-MIT。详见 `LICENSE`。
+仓库级文件使用 MIT（见 `LICENSE`）。单个 Skill 可以保留自己的上游许可证；重新分发前请阅读对应目录里的 `LICENSE`。

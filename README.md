@@ -2,75 +2,66 @@
 
 [简体中文](README.zh-CN.md)
 
-Kahlil Skills is a public collection of installable AI agent Skills. The first
-Skill is `multica-squad-builder`, a lean Skill for designing, iterating, and
-auditing Multica-style agent squads.
+Kahlil Skills is a public collection of reusable AI-agent Skills. Each Skill is isolated under `skills/` with its own instructions, references, assets, scripts, and validation where needed.
 
-Each Skill lives in its own folder under `skills/`, so the repository can grow
-without mixing package files together.
-
-## Skill
+## Skills
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| `multica-squad-builder` | `2.0.0` | Design, iterate, and audit Multica-style agent squads with a leader charter and minimal hard gates. |
-
-## Repository Layout
-
-```text
-skills/
-  multica-squad-builder/
-    SKILL.md
-    references/
-    templates/
-    scripts/
-docs/
-  publishing-checklist.md
-  sanitization-report.md
-  releases/
-```
-
-## Usage
-
-For `multica-squad-builder`, start with:
-
-```bash
-cd skills/multica-squad-builder
-python3 scripts/validate_skill.py
-```
-
-Then adapt the templates for your own workspace, roster, project resources, and mention map. Do not reuse example placeholders as real IDs.
+| `multica-squad-builder` | `2.0.0` | Design, iterate, and audit Multica-style agent squads. |
+| `kahlil-cover` | `0.2.0` | Turn an article or topic into an article-specific social-cover prompt, with IP and content-visual modes. |
+| `kahlil-aesthetic` | `2.0.0` | Preserve curated visual references as verifiable, reusable aesthetic evidence. |
+| `kahlil-card` | `1.0.0` | Produce Kahlil-branded social-card sets, cover pairs, and Live Photo cards. |
 
 ## Install
 
-Copy this command into an agent shell to install the current public skill:
+Install one Skill:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash
+bash scripts/install-skill.sh kahlil-cover
+bash scripts/install-skill.sh kahlil-aesthetic
+bash scripts/install-skill.sh kahlil-card
 ```
 
-It installs `multica-squad-builder` to `${CODEX_HOME:-~/.codex}/skills/multica-squad-builder`.
-Restart Codex or the agent runtime after installation.
-
-To replace an existing local copy:
+Install every public Skill:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | env KOS_OVERWRITE=1 bash
+bash scripts/install-skill.sh all
 ```
 
-## Release Status
+From a clean machine, the same installer can be piped from GitHub:
 
-Current public release: `multica-squad-builder` v2.0.0.
+```bash
+curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scripts/install-skill.sh | bash -s -- all
+```
 
-## Agent Maintenance
+The installer writes to `${CODEX_HOME:-~/.codex}/skills/<skill-name>`. Use `KOS_DEST` for a temporary review destination and `KOS_OVERWRITE=1` to replace an existing copy. Restart Codex or the agent runtime after installation.
 
-Agents updating this repository should follow `AGENTS.md` before editing,
-validating, committing, or publishing changes.
+## Validate
 
-## Publishing Rule
+```bash
+cd skills/multica-squad-builder && python3 scripts/validate_skill.py
+cd skills/kahlil-cover && bash tests/validate-skill.sh
+cd skills/kahlil-aesthetic && node --test tests/*.test.mjs
+node skills/kahlil-card/scripts/check-skill-docs.mjs
+```
 
-Before publishing a new skill or release, run the checklist in `docs/publishing-checklist.md`.
+For the full package and publishing checks, see `docs/publishing-checklist.md`. The repository is intentionally public-safe: no private workspace data, credentials, local machine paths, or generated private reports belong here.
+
+## Layout
+
+```text
+skills/<skill-name>/
+  SKILL.md
+  README.md              # when the package needs a human-facing guide
+  VERSION
+  CHANGELOG.md
+  agents/                # optional UI metadata
+  references/            # conditional instructions and schemas
+  assets/                # templates, fonts, images, or fixtures
+  scripts/               # deterministic helpers
+```
 
 ## License
 
-MIT. See `LICENSE`.
+The repository-level material is MIT (`LICENSE`). Individual Skill packages may retain their own upstream license; check the package's `LICENSE` before redistribution.

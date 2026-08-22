@@ -1,30 +1,39 @@
 # Sanitization Report / 清理报告
 
-Current release audit: `multica-squad-builder` v2.0.0 (2026-08-18).
+Current release audit: `multica-squad-builder` v2.0.0, `kahlil-cover` v0.2.0, `kahlil-aesthetic` v2.0.0, and `kahlil-card` v1.0.0 (2026-08-23).
 
 ## Scope
 
 Included:
 
 - `skills/multica-squad-builder/`
-- root repository documentation
-- repository publishing checklist
+- `skills/kahlil-cover/`
+- `skills/kahlil-aesthetic/`
+- `skills/kahlil-card/`
+- root documentation and `scripts/install-skill.sh`
 
 Excluded:
 
-- private setup packs
-- issue transcripts and run logs
-- screenshots and browser evidence
-- local databases
-- project-specific work artifacts
+- private setup packs, user libraries, captures, and workspace exports
+- issue transcripts, internal handoff/product/audit documents, and run logs
+- machine-specific paths and private canonical artwork sources
+- `node_modules`, commercial font binaries, and private font symlinks
 
 ## Checks
 
-The source skill and public repository were checked for private local paths, Multica mention links, workspace IDs, agent IDs, member IDs, issue IDs, project-specific references, issue keys, and common secret patterns.
+The source skills and public repository were checked for private local paths, workspace IDs, agent IDs, member IDs, issue IDs, project-specific references, issue keys, and common secret patterns. Package-specific validators and an all-package installer smoke test were also run in a temporary destination.
 
-Latest audit result: no private IDs, local paths, mention links, issue keys, or real secret/token patterns were found. Broad-regex hits such as `SHA-256` labels in historical release documents are public checksum names, verified by manual inspection.
+Latest audit result: no private IDs, local paths, issue keys, or real secret/token patterns were found. Broad-regex hits such as `SHA-256`, `AGPL-3.0`, and policy/test strings containing words like `secret`, `cookie`, or `token` are benign and were verified by manual inspection.
 
-中文结论：当前公开仓库已按开源发布标准做过清理检查，没有发现私有路径、工作区 ID、Agent/成员/Issue ID、mention 链接、Issue key 或真实密钥/token 模式。
+## Validation evidence
+
+- `kahlil-cover`: dual-mode contract test passed
+- `kahlil-aesthetic`: 36/36 tests passed
+- `kahlil-card`: 30/30 documentation checks passed
+- `multica-squad-builder`: existing validator passed
+- installer smoke test: all four packages installed successfully
+
+中文结论：三个 Kahlil Skill 已整理为可公开审核的包；私有 canonical artwork 源文件仍在仓库外，公开包只保留已接受的封面基准图。分支和 Draft PR 应在合并到 `main` 前保持可审核状态。
 
 ## Notes
 
