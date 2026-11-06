@@ -13,7 +13,7 @@ without mixing package files together.
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| `multica-squad-builder` | `2.0.0` | Design, iterate, and audit Multica-style agent squads with a leader charter and minimal hard gates. |
+| `multica-squad-builder` | `2.1.0` | Design, iterate, and audit Multica-style agent squads with a leader charter and minimal hard gates. |
 
 ## Repository Layout
 
@@ -60,7 +60,8 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## Release Status
 
-Current public release: `multica-squad-builder` v2.0.0.
+Prepared package in this branch: `multica-squad-builder` v2.1.0.
+Public main remains v2.0.0 until this change is published.
 
 ## Agent Maintenance
 
