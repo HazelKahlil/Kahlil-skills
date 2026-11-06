@@ -60,8 +60,8 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## Release Status
 
-Prepared package in this branch: `multica-squad-builder` v2.1.1.
-Public main remains v2.0.0 until this change is published.
+Current public package: `multica-squad-builder` v2.1.1.
+The default installer follows `main`; versioned bundles and checksums are available on [GitHub Releases](https://github.com/HazelKahlil/Kahlil-skills/releases/tag/v2.1.1).
 
 ## Agent Maintenance
 

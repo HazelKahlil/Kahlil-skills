@@ -57,8 +57,8 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## 发布状态
 
-本分支已准备版本：`multica-squad-builder` v2.1.1。
-本次变更公开发布前，公开 main 仍为 v2.0.0。
+当前公开版本：`multica-squad-builder` v2.1.1。
+默认安装器跟随 `main`；固定版本包与校验和见 [GitHub Releases](https://github.com/HazelKahlil/Kahlil-skills/releases/tag/v2.1.1)。
 
 ## Agent 维护说明
 
