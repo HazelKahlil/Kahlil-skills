@@ -20,7 +20,7 @@ When review is already required and its scope, writer, reviewer, repair count/ca
 
 Apply repair-contract.md: inherit the specific valid project/packet repair limit; default to two only when unspecified, and put the same chosen value in all generated runtime text. Share the count across applicable acceptance stages, with no reset by renaming. At the cap solve ordinary evidence disputes, then recommend a bounded next candidate/route with a failure exit; obtain missing specific authority before further repair.
 
-For dependency-heavy parents keep one remaining-path/checkpoint line. A new independent prerequisite prompts a scope check, not an automatic child. Link historical evidence rather than recopying it into every comment.
+For dependency-heavy parents keep one remaining-path/checkpoint line. A new independent prerequisite prompts a scope check, not an automatic child. Keep each handoff to the current candidate, repair count/allowance, current result and remaining blockers, and next action. Link unchanged historical logs or JSON by accessible artifact or comment reference instead of copying the full history. Retain decision-relevant counterexamples, authorization conditions and evidence gaps; include necessary excerpts if references are unavailable. Concision never resets counts or hides findings.
 
 Platform errors are separate from product repair rounds. A recovery needs a changed condition or evidenced reason and authority. Repeated unchanged failure with no useful hypothesis is a blocker; a fixed retry quota is not a substitute for diagnosis.
 

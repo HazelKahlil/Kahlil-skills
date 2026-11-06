@@ -1,4 +1,4 @@
-# Multica-Squad-Builder v2.1.0
+# Multica-Squad-Builder v2.1.1
 
 Design, iterate, or audit a Multica agent squad. Output is a tailored setup pack: topology, leader charter, role instructions, hard gates.
 
@@ -19,5 +19,7 @@ Strong models, few rules. The leader writes specs, does small work, packs self-c
 - `scripts/validate_skill.py` — package shape check
 
 Keep generated text short and retain necessary boundaries. Missed compliance is not permission to remove protections. Repair details are in references/repair-contract.md; resolve the specific valid project/packet limit (default 2 only when unspecified) and fill the same {{REPAIR_LIMIT}} value into every applicable generated role. Generated runtime text must carry applicable rules instead of relying on a designer-only attachment.
+
+Handoffs carry the current candidate, round, result and next action; unchanged history stays available by reference without hiding blockers or authority.
 
 Existing agents, local imports and workspace copies need separately scoped updates. Saved configuration is distinct from subsequent runtime behavior. No automatic fleet migration or task dispatch is implied.

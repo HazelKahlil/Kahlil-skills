@@ -13,6 +13,8 @@ The leader clarifies acceptance, does small work directly, assigns one writer pe
 
 Workers self-test. Independent review follows behavior risk and project requirements. Applicable live technical QA precedes user acceptance; docs-only work does not need app installation. Reuse evidence while candidate/environment/impact remain valid.
 
+Keep each handoff to the current candidate, repair count/allowance, current result and remaining blockers, and next action. Link unchanged historical logs or JSON by accessible artifact or comment reference instead of copying the full history. Retain decision-relevant counterexamples, authorization conditions and evidence gaps; include necessary excerpts if references are unavailable. Concision never resets counts or hides findings.
+
 Initial candidate R0; this packet's autonomous repair limit is {{REPAIR_LIMIT}} substantive repair deliveries, numbered R1, R2, and so on. Inherit the established limit and count in role instructions and handoffs. Code, applicable live QA and contract-related user findings before acceptance share the count; partial PASS or different IDs never reset it. Local edits/builds are not rounds or permission for infinite unchanged retry. Genuine new scope or later defects after completed acceptance are separate, not used to hide unresolved work.
 
 All evidenced relevant blockers are disclosed together; top three in summary. Recheck original counterexamples and affected paths; serious relevant new findings, including missed defects, may block. At the cap stop patches and repeated dispatch, preserve failure, and have the leader recommend a bounded route/check/failure exit. Extra repair needs specific valid authority and continues the count.
