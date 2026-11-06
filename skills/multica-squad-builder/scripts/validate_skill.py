@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the v2.0.0 package shape."""
+"""Validate package structure and consistent version metadata."""
 
 from pathlib import Path
 import re
@@ -15,6 +15,7 @@ REQUIRED = [
     "VERSION",
     "references/multica-primitives.md",
     "references/leader-playbook.md",
+    "references/repair-contract.md",
     "references/squad-design.md",
     "references/safety-gates.md",
     "references/role-theme-presets.md",
@@ -71,11 +72,14 @@ for relative_path in REQUIRED:
         errors.append(f"Missing {relative_path}")
 
 version = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else ""
-if version != "2.0.0":
-    errors.append(f"VERSION must be 2.0.0, got {version!r}")
+if not re.fullmatch(r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?", version):
+    errors.append(f"Invalid VERSION: {version!r}")
 changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8") if (ROOT / "CHANGELOG.md").exists() else ""
-if "## v2.0.0" not in changelog:
-    errors.append("CHANGELOG missing v2.0.0")
+if f"## v{version} " not in changelog and f"## v{version}\n" not in changelog:
+    errors.append(f"CHANGELOG missing v{version}")
+readme = (ROOT / "README.md").read_text(encoding="utf-8")
+if f"v{version}" not in readme.splitlines()[0]:
+    errors.append("README version differs from VERSION")
 
 files = sorted(
     p
@@ -102,6 +106,6 @@ if errors:
     sys.exit(1)
 
 print(
-    f"OK: Multica-Squad-Builder v2.0.0 validation passed "
+    f"OK: Multica-Squad-Builder v{version} validation passed "
     f"({len(files)} files, {len(lines)} SKILL.md lines)."
 )

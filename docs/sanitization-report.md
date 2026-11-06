@@ -1,6 +1,6 @@
 # Sanitization Report / 清理报告
 
-Current release audit: `multica-squad-builder` v2.0.0 (2026-08-18).
+Current release audit: `multica-squad-builder` v2.1.1 (2026-11-06).
 
 ## Scope
 

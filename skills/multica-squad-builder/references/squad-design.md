@@ -24,11 +24,11 @@ If child or stage creation is unavailable, fall back to routed single-worker.
 | Incident | Reproduce, mitigate, rollback, fix. Keep the roster tiny. |
 | Multi-repo | List each repo/service/branch and attach Project Resources. One Worker per repo packet if truly independent. |
 
-Idle roles are a design failure. Reviewer and Analyst are optional.
+Risk-triggered Reviewer and Analyst may be idle by design. Add roles only for an evidenced need; lack of constant activity does not justify deleting an existing optional role.
 
-## Five setup questions
+## Setup facts to resolve
 
-Ask only these unless the owner already answered them:
+Read context and current configuration first. Ask only for material missing facts; these are topics, not a mandatory questionnaire:
 
 1. **Scope** — what is in, what is out, which repos/branches?
 2. **Safety** — secrets, production data, auth, billing, irreversible actions?
@@ -38,7 +38,7 @@ Ask only these unless the owner already answered them:
 
 ## Mention map
 
-An installable pack includes exact mention markdown for every live role and the Human Owner. Missing values make the pack not installable; the leader asks for the paste rather than inventing mentions.
+Resolve required IDs and mention forms from current accessible roster data. Ask only for unavailable material values. Proposals may identify unresolved targets without inventing IDs or pretending installability.
 
 `@mention` creates tasks. Use it for first delegation, a real handoff, or escalation. Do not mention for thanks or closing comments.
 

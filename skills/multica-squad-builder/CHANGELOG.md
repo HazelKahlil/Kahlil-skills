@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.1.1 — Concise evidence handoffs
+
+- Carry current candidate, repair count/allowance, results, remaining blockers and next action; reference unchanged history rather than copying full logs or JSON each round.
+- Keep references accessible and retain decision-relevant evidence and authority in the current brief. Repair limits, finite extension conditions, review independence and QA gates are unchanged.
+
+## v2.1.0 — Bounded repairs and focused handoffs
+
+- Share one packet repair count across review and applicable QA; inherit project limits, default to two only when unspecified, and preserve finite delegated extensions without resetting counts.
+- Stop unproductive work early; distinguish necessary blockers from optional polish, and reuse applicable evidence.
+- Let pre-authorized worker/reviewer handoffs proceed directly with verified routing; send the leader decisions, cap exits and consolidated results rather than routine acknowledgments.
+- Keep child delivery, candidate verdict and parent acceptance distinct; disclose all relevant blockers and preserve required independent review and live QA.
+- Update existing objects by approved fields; retain valid authority, IDs and bindings, and separate configuration readback from runtime verification.
+
 ## v2.0.0 — Real Leader, Few Rules
 
 - Redesigned the leader from a routing/dispatch layer into a real leader: spec before dispatch, scale effort (small work done personally), self-contained briefs, judge/synthesize member output, unblock with decisions.

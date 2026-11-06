@@ -10,7 +10,7 @@ Kahlil Skills 是一个公开、可安装的 AI Agent Skills 合集仓库。当�
 
 | Skill | 版本 | 用途 |
 | --- | --- | --- |
-| `multica-squad-builder` | `2.0.0` | 以队长章程和最小硬门设计、迭代和审计 Multica 风格 Agent 小队。 |
+| `multica-squad-builder` | `2.1.1` | 以队长章程和最小硬门设计、迭代和审计 Multica 风格 Agent 小队。 |
 
 ## 仓库结构
 
@@ -57,7 +57,8 @@ curl -fsSL https://raw.githubusercontent.com/HazelKahlil/Kahlil-skills/main/scri
 
 ## 发布状态
 
-当前公开版本：`multica-squad-builder` v2.0.0。
+当前公开版本：`multica-squad-builder` v2.1.1。
+默认安装器跟随 `main`；固定版本包与校验和见 [GitHub Releases](https://github.com/HazelKahlil/Kahlil-skills/releases/tag/v2.1.1)。
 
 ## Agent 维护说明
 
